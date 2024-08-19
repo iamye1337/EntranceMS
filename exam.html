@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>exam</title>
+</head>
+
+<body>
+    <!----------------------- Main Container -------------------------->
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <!----------------------- Question Container -------------------------->
+        <div class="row border rounded-5 p-2 bg-white shadow box-area">
+            <!--------------------------- Left Box (question) ----------------------------->
+            <div class="col right-box">
+                <div class="row align-items-center">
+                    <div class="header-text">
+                        <h2>Question (number)</h2>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, mollitia quidem minima
+                            obcaecati recusandae hic tempora consectetur ipsam molestiae placeat? Voluptas rem
+                            recusandae iusto ipsum iste, quo soluta quos doloribus?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto g-1 rounded-5" style="background-color: green;"></div>
+            <!-------------------- ------ Right Box (Options) ---------------------------->
+            <div class="col right-box">
+                <div class="header-text mb-2">
+                    <h2>Answer</h2>
+                    <input type="checkbox" class="btn-check" id="btn-check-2" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="btn-check-2">Mark for Review</label>
+
+                </div>
+                <!-- options -->
+                <div class="ps-3 pb-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Option1">
+                        <label class="form-check-label" for="Option1">Option 1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Option2">
+                        <label class="form-check-label" for="Option2">Option 2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Option3">
+                        <label class="form-check-label" for="Option3">Option 3</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Option4">
+                        <label class="form-check-label" for="Option4">Option 4</label>
+                    </div>
+                </div>
+                <!-- button -->
+                <div class="d-flex">
+                    <div class="input-group me-3">
+                        <button class="btn btn-primary w-100 fs-6">Previous</button>
+                    </div>
+                    <div class="input-group ms-3">
+                        <button class="btn btn-primary w-100 fs-6">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
