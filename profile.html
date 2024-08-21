@@ -12,53 +12,56 @@
 
 <body>
     <!----------------------- Main Container -------------------------->
-    <div class="container border rounded-5 p-3 bg-white shadow px-5 mt-5">
-        <!--------------------------- Top Box (profilepicL, NameR) ----------------------------->
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <img src="images/profpic.png" class="img-fluid" style="max-height: 200px;">
-            </div>
-            <div class="col p-5 fs-1 fw-bold text-nowrap">
-                <p>Full name</p>
-            </div>
-        </div>
-        <!--------------------------- Middle Boxes (Credentials) (*maybe make boxes around them)----------------------------->
-        <div>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <!----------------------- Question Container -------------------------->
+        <div class="border rounded-5 p-4 bg-white shadow box-area text-nowrap">
+            <!--------------------------- Top Box (profilepicL, NameR) ----------------------------->
             <div class="row">
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">Father's Name:</p>
-                    <p>Full name</p>
+                <div class="col d-flex justify-content-center">
+                    <img src="images/profpic.png" class="img-fluid" style="max-height: 140px;">
                 </div>
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">Mother's Name:</p>
+                <div class="col p-5 big-text">
                     <p>Full name</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">Grandfather's Name:</p>
-                    <p>Full name</p>
+            <!--------------------------- Middle Boxes (Credentials) (*maybe make boxes around them)----------------------------->
+            <div class="d-flex mb-3">
+                <div class="col me-3">
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Father's Name:</p>
+                        <p class="p-2">Full name</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Mother's Name:</p>
+                        <p class="p-2">Full name</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Grandfather's Name:</p>
+                        <p class="p-2">Full name</p>
+                    </div>
                 </div>
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">DOB:</p>
-                    <p>date</p>
+                <div class="col">
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">DOB:</p>
+                        <p class="p-2">dob</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Address:</p>
+                        <p class="p-2">addressLine1, addressLine2</p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Contact Number:</p>
+                        <p class="p-2">number</p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">Address:</p>
-                    <p>addressline1, addressline2</p>
-                </div>
-                <div class="col d-flex">
-                    <p class="fw-medium pe-2">Contact Number:</p>
-                    <p>number</p>
-                </div>
+            <!-- take exam button -->
+            <div class="input-group">
+                <a href="exam.html" class="w-100"><button class="btn btn-lg btn-primary w-100">Take the
+                        Test</button></a>
             </div>
         </div>
-        <!-- take exam button -->
-        <div class="input-group mb-3">
-            <a href="exam.html" class="w-100"><button class="btn btn-lg btn-primary w-100 fs-6">Take the Test</button></a>
-        </div>
+    </div>
     </div>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

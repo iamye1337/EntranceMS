@@ -19,12 +19,14 @@ body{
 }
 
 /*------------ Profile container ------------*/
-.norm-text{
-    white-space: nowrap;
+.list-text{
+    min-width: 300px;
+    text-wrap: nowrap;
+    padding-left: 2;
 }
 
-.vl {
-    border: 6px solid green;
-    height: auto;
-    max-width: 0px;
+.big-text{
+    text-wrap: nowrap;
+    font-weight: bold;
+    font-size: 2.5rem;
 }
