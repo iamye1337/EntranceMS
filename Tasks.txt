@@ -1,0 +1,12 @@
+THINGS TO BE ADDED:
+i.  role based access to teachers and students
+ii. question maker page made
+
+Samir:
+- Make exambuilder.html page (Not done)
+
+Lumanti:
+- Redesign the exam.html page using image newExam.jpg (Not done)
+
+
+*Mark as 'done' in the parenthesis when task is completed.
