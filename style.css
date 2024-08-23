@@ -5,28 +5,28 @@ body{
     background: #ececec;
 }
 
-/*------------ Login container ------------*/
-.login-area{
-    width: 930px;
-}
-/*Right box*/
-.right-box{
-    padding: 40px 30px 40px 40px
-}
-/*Custom Placeholder*/
-::placeholder{
-    font-size: 16px;
+/*General*/
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/*------------ Profile container ------------*/
-.list-text{
-    min-width: 300px;
-    text-wrap: nowrap;
-    padding-left: 2;
+.box-container{
+    border: 2px;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 5rem;
 }
 
 .big-text{
     text-wrap: nowrap;
     font-weight: bold;
     font-size: 2.5rem;
+}
+
+/*Right box in login page*/
+.right-box{
+    padding: 40px 30px 40px 40px
 }
