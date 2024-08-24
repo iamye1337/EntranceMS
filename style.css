@@ -12,6 +12,11 @@ body{
     align-items: center;
 }
 
+/* colors */
+.text-light{
+    color: black;
+}
+
 .box-container{
     border: 2px;
     border-radius: 20px;
