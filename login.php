@@ -44,7 +44,7 @@
                         <small><a href="#">Problem Logging in?</a></small>
                     </div>
                     <div class="forgot">
-                        <small><a href="exambuilder.html">Teacher Login</a></small>
+                        <small><a href="teacher_panel/add_students.php">Teacher Login</a></small>
                     </div>
                 </div>
             </div>

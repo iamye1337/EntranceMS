@@ -63,8 +63,8 @@ try {
       <!-- Back to Teacher Homepage -->
       <a href="#" class="btn btn-success">Back to Home</a>
 
-      <!-- Teacher logout -> (Homepage/index) -->
-      <div class="d-flex float-end"> <a href="#" type="button" class="btn btn-secondary">
+      <!-- Teacher logout -> (Homepage/index) |Login Page for now*| -->
+      <div class="d-flex float-end"> <a href="../login.php" type="button" class="btn btn-secondary">
           <img src="../images/profpic.png" alt="" width="20" height="auto"> Log out</a>
       </div>
     </div>
