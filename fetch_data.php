@@ -1,8 +1,8 @@
 <?php
 // Database connection details
 $servername = "localhost";   //  server
-$username = "root";  //  username
-$password = "";  //  password
+$username = "schoolwork";  //  username
+$password = "newpassword";  //  password
 $dbname = "login";    // database name
 
 // Create a connection to the MySQL database
@@ -11,7 +11,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
+} else {
+    echo "Connected successfully"; }
 
 // SQL query to fetch data from the users table
 $sql = "SELECT id, name, email, age FROM users";
