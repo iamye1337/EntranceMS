@@ -34,17 +34,19 @@
                         <h2>Welcome</h2>
                         <p>Adarsha Saula Yubak Secondary School</p>
                     </div>
-                    <div class="input-group mb-3">
-                        <input autofocus type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Symbol Number">
-                    </div>
-                    <div  class="input-group mb-3">
-                        <a draggable="true" href="profile.html" class="w-100"><button class="btn btn-lg btn-primary w-100 fs-6">Login</button></a>
-                    </div>
-                    <div class="forgot">
-                        <small><a href="#">Problem Logging in?</a></small>
-                    </div>
-                    <div class="forgot">
-                        <small><a href="exambuilder.html">Teacher Login</a></small>
+                    <div action="login_process.php" method="post">
+                        <div class="input-group mb-3">
+                            <input id="symbol_no" name="symbol_no" type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Symbol Number">
+                        </div>
+                        <div  class="input-group mb-3">
+                            <a draggable="true" href="profile.html" class="w-100"><button class="btn btn-lg btn-primary w-100 fs-6">Login</button></a>
+                        </div>
+                        <div class="forgot">
+                            <small><a href="#">Problem Logging in?</a></small>
+                        </div>
+                        <div class="forgot">
+                            <small><a href="exambuilder.html">Teacher Login</a></small>
+                        </div>
                     </div>
                 </div>
             </div>
