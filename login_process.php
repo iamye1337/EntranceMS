@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // User exists, login success
         $_SESSION['symbolNo'] = $symbol;
         //when login is succesfull it takes you to the profile page 
-        header("Location: profile.html");
+        header("Location: profile.php");
         exit();
 
     } 
