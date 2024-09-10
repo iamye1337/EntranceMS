@@ -1,27 +1,29 @@
 <?php
-session_start();
+include("database/connectdb.php");
 
-include 'database/connect.php';
+//process starts
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $symbol = $_POST['symbolNo'];
 
-//retrieving form data
-$symbol_no = $_POST['symbol_no'];
+    // SQL query to check if the symbol number exists in the database
+    $sql = "SELECT * FROM student WHERE Symbol_No = '$symbol'";
+    $result = $conn->query($sql);
 
-//Execute SQL query
-$sql = "SELECT * FROM student WHERE Symbol_No='$symbol_no'";
-$result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // User exists, login success
+        $_SESSION['symbolNo'] = $symbol;
+        //when login is succesfull it takes you to the profile page 
+        header("Location: profile.html");
+        exit();
 
-// Check if a row was returned
-if ($result->num_rows > 0) {
-    // Start a session and store user data
-    $_SESSION['Symbol_No'] = $Symbol_No;
-    $_SESSION['logged_in'] = true;
-
-    // Redirect to dashboard or other protected page
-    header("Location: profile.html");
-    exit();
-} else {
-    // Handle incorrect credentials (e.g., display an error message)
-    echo "Symbol number is not registered";
+    } 
+    else{
+        // Symbol number does not exist
+        echo '<script>
+            window.location.href = "login.html";
+            alert("Login Failed. Symbol Number not registered")
+        </script>';
+    }
 }
 
 $conn->close();

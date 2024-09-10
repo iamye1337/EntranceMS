@@ -1,5 +1,5 @@
 <?php
-include 'database/connect.php';
+include 'database/connectdb.php';
 
 // SQL query to fetch data from the users table
 $sql = "SELECT * FROM student";
@@ -26,7 +26,7 @@ $result = $conn->query($sql);
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #a9a7a6;
             color: white;
         }
         tr:nth-child(even) {
