@@ -37,6 +37,7 @@
                         <h2>Welcome</h2>
                         <p>Adarsha Saula Yubak Secondary School</p>
                     </div>
+<<<<<<< HEAD:login.html
                     <form action="login_process.php" onsubmit="return isvalid();" method="post">
                         <div class="input-group mb-3">
                             <input id="symbolNo" name="symbolNo" autofocus type="text" class="form-control form-control-lg bg-light fs-6"
@@ -61,6 +62,20 @@
                             }
                         }
                     </script>
+=======
+                    <div class="input-group mb-3">
+                        <input autofocus type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Symbol Number">
+                    </div>
+                    <div  class="input-group mb-3">
+                        <a draggable="true" href="profile.html" class="w-100"><button class="btn btn-lg btn-primary w-100 fs-6">Login</button></a>
+                    </div>
+                    <div class="forgot">
+                        <small><a href="#">Problem Logging in?</a></small>
+                    </div>
+                    <div class="forgot">
+                        <small><a href="teacher_panel/add_students.php">Teacher Login</a></small>
+                    </div>
+>>>>>>> 51a9af02604783c2b12857f9f56973f549196200:login.php
                 </div>
             </div>
         </div>
