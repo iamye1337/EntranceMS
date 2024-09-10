@@ -9,13 +9,20 @@ $dbname = "login";    // database name
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check the connection
-if ($conn->connect_error) {
+/*if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } else {
     echo "Connected successfully"; }
+*/
+if ($conn->connect_error){
+    die("Connection failed: " . $conn->connect_error);
+}
+
 
 // SQL query to fetch data from the users table
-$sql = "SELECT id, name, email, age FROM users";
+$sql = "SELECT * FROM student";
+
+//Execute Query
 $result = $conn->query($sql);
 ?>
 
@@ -51,7 +58,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-    <h2>Data from MySQL Database</h2>
+    <h2>Registered Students Lists</h2>
 
     <div class="table-wrapper">
         <table>
