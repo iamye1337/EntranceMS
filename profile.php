@@ -64,6 +64,10 @@ if ($result->num_rows > 0) {
                         <p class="fw-medium p-2">Mother's Name:</p>
                         <p class="p-2"><?php echo $mName; ?></p>
                     </div>
+                    <div class="d-flex">
+                        <p class="fw-medium p-2">Contact Number:</p>
+                        <p class="p-2"><?php echo $contactNo; ?></p>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="d-flex">
@@ -74,10 +78,10 @@ if ($result->num_rows > 0) {
                         <p class="fw-medium p-2">Address:</p>
                         <p class="p-2"><?php echo $address; ?></p>
                     </div>
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                         <p class="fw-medium p-2">Contact Number:</p>
                         <p class="p-2"><?php echo $contactNo; ?></p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- take exam button -->
