@@ -1,22 +1,6 @@
 <?php
-// Database connection details
-$servername = "localhost";   //  server
-$username = "schoolwork";  //  username
-$password = "newpassword";  //  password
-$dbname = "login";    // database name
-
-// Create a connection to the MySQL database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-/*if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected successfully"; }
-*/
-if ($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
+// Database connection
+include("database/connectdb.php");
 
 
 // SQL query to fetch data from the users table
@@ -66,6 +50,11 @@ $result = $conn->query($sql);
                 <th>SN</th>
                 <th>Name</th>
                 <th>Symbol_No</th>
+                <th>Father's Name</th>
+                <th>Mother's Name</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Contact No</th>
             </tr>
 
             <?php
@@ -77,6 +66,11 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["SN"] . "</td>";
                     echo "<td>" . $row["Name"] . "</td>";
                     echo "<td>" . $row["Symbol_No"] . "</td>";
+                    echo "<td>" . $row["Fathers_Name"] . "</td>";
+                    echo "<td>" . $row["Mothers_Name"] . "</td>";
+                    echo "<td>" . $row["Date_of_Birth"] . "</td>";
+                    echo "<td>" . $row["Address"] . "</td>";
+                    echo "<td>" . $row["Contact_No"] . "</td>";
                     echo "</tr>";
                 }
             } else {
