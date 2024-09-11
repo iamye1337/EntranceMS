@@ -1,3 +1,32 @@
+<?php
+session_start();
+include("database/connectdb.php");
+
+//query that fetches datas from table
+$sql = "SELECT * FROM student";
+
+//execute query
+$result = $conn->query($sql);
+
+//fetch data
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+    // Store user data in variables
+    $name = $row["Name"];
+    $fName = $row["Fathers_Name"];
+    $mName = $row["Mothers_Name"];
+    $doB = $row["Date_of_Birth"];
+    $address = $row["Address"];
+    $contactNo = $row["Contact_No"];
+} else {
+    echo "User not found.";
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>(Username)</title>
+    <title><?php echo $name; ?>'s Profile </title>
 </head>
 
 <body>
@@ -21,7 +50,7 @@
                     <img src="images/profpic.png" class="img-fluid" style="max-height: 140px;">
                 </div>
                 <div class="col p-5 big-text">
-                    <p>Full name</p>
+                    <p><?php echo $name; ?></p>
                 </div>
             </div>
             <!--------------------------- Middle Boxes (Credentials) (*maybe make boxes around them)----------------------------->
@@ -29,30 +58,30 @@
                 <div class="col me-3">
                     <div class="d-flex">
                         <p class="fw-medium p-2">Father's Name:</p>
-                        <p class="p-2">Full name</p>
+                        <p class="p-2"><?php echo $fName; ?></p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Mother's Name:</p>
-                        <p class="p-2">Full name</p>
+                        <p class="p-2"><?php echo $mName; ?></p>
                     </div>
                     <div class="d-flex">
-                        <p class="fw-medium p-2">Grandfather's Name:</p>
-                        <p class="p-2">Full name</p>
+                        <p class="fw-medium p-2">Contact Number:</p>
+                        <p class="p-2"><?php echo $contactNo; ?></p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex">
-                        <p class="fw-medium p-2">DOB:</p>
-                        <p class="p-2">dob</p>
+                        <p class="fw-medium p-2">Date of Birth:</p>
+                        <p class="p-2"><?php echo $doB; ?></p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Address:</p>
-                        <p class="p-2">addressLine1, addressLine2</p>
+                        <p class="p-2"><?php echo $address; ?></p>
                     </div>
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                         <p class="fw-medium p-2">Contact Number:</p>
-                        <p class="p-2">number</p>
-                    </div>
+                        <p class="p-2"><?php echo $contactNo; ?></p>
+                    </div> -->
                 </div>
             </div>
             <!-- take exam button -->
