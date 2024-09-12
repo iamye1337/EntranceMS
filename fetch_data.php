@@ -28,7 +28,7 @@ $result = $conn->query($sql);
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: grey;
             color: white;
         }
         tr:nth-child(even) {
@@ -55,6 +55,7 @@ $result = $conn->query($sql);
                 <th>Date of Birth</th>
                 <th>Address</th>
                 <th>Contact No</th>
+                <th>Completion Status</th>
             </tr>
 
             <?php
@@ -71,6 +72,7 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["Date_of_Birth"] . "</td>";
                     echo "<td>" . $row["Address"] . "</td>";
                     echo "<td>" . $row["Contact_No"] . "</td>";
+                    echo "<td>" . $row["completionStatus"] . "</td>";
                     echo "</tr>";
                 }
             } else {
