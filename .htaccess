@@ -1,9 +1,2 @@
 RewriteEngine On
-#RewriteBase /public
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond $1 !^(index\.php|public|css|js)
-#RewriteRule ^(.*)$ index.php/params=$1 [L,QSA]
-#ErrorDocument 403 /Error_Handlers/Access_Forbidden.php
-#ErrorDocument 404 /Error_Handlers/File_Not_Found.php
 Options All -Indexes
