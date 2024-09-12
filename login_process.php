@@ -6,24 +6,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $symbol = $_POST['symbolNo'];
 
     // SQL query to check if the symbol number exists in the database
-    $sql = "SELECT * FROM student WHERE Symbol_No = '$symbol'";
-    $result = $conn->query($sql);
+    $sql1 = "SELECT * FROM student WHERE Symbol_No = '$symbol'";
+    // $sql2 = "SELECT completion_status FROM student WHERE Symbol_No = '$symbol'";
+    $result = $conn->query($sql1);
+    // $completionStatus = $conn->query($sql2);
+
 
     if ($result->num_rows > 0) {
-        // User exists, login success
-        $_SESSION['symbolNo'] = $symbol;
-        //when login is succesfull it takes you to the profile page 
-        header("Location: profile.php");
-        exit();
+        // if ($completionStatus == 0) {
+            // User exists, login success
+            $_SESSION['symbolNo'] = $symbol;
+            //when login is succesfull it takes you to the profile page 
+            header("Location: profile.php");
+            exit();
+        // }
 
-    } 
-    else{
+    } else {
         // Symbol number does not exist
         echo '<script>
             window.location.href = "login.html";
             alert("Login Failed. Symbol Number not registered")
         </script>';
     }
+
+    //     //In Attempt to relogging in using the same symbol number
+//     $sql = "SELECT completion_status FROM student WHERE Symbol_No = '$symbol'";
+
+
+    //     if ($completionStatus == 1) {
+//         // User has already taken the exam
+//         header("Location: login.html");
+//         exit();
+//     } else {
+//         // Allow login and proceed to exam
+//         // ...
+//         $_SESSION['symbolNo'] = $symbol;
+//         //when login is succesfull it takes you to the profile page 
+//         header("Location: profile.php");
+//         exit();
+
+    //     }
 }
 
 $conn->close();
