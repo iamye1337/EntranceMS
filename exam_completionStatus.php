@@ -1,5 +1,5 @@
 
-<!-- onclick of submit button exucute this php using "location" and this will uodate the completionStatus to 1 which will prevent relog-in ->
+<!-- onclick of submit button exucute this php using "location" and this will update the completionStatus to 1 which will prevent relog-in ->
 
 
 <?php
