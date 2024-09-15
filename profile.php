@@ -85,9 +85,8 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <!-- take exam button -->
-            <div class="input-group">
-                <a href="exam.html" class="w-100"><button class="btn btn-lg btn-primary w-100">Take the
-                        Test</button></a>
+            <div class="input-group"  >
+                <a href="completionStatus.php" class="w-100" type="submit"><button class="btn btn-lg btn-primary w-100">Take the Test</button></a>
             </div>
         </div>
     </div>
