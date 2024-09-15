@@ -1,11 +1,11 @@
 <?php
-include"database/connectdb.php";
+include"../database/connectdb.php";
 
 //process starts
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $symbol = $_POST['symbolNo'];
     // SQL query to check if the symbol number exists in the database
-    $sql1 = "SELECT * FROM stuLogin WHERE Symbol_No = '$symbol'";
+    $sql1 = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
     // $sql2 = "SELECT completion_status FROM stuLogin WHERE Symbol_No = '$symbol'";
     $result = $conn->query($sql1);
     // $completionStatus = $conn->query($sql2);
