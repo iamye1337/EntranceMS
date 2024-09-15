@@ -1,4 +1,3 @@
-
 <!-- onclick of submit button exucute this php using "location" and this will uodate the completionStatus to 1 which will prevent relog-in ->
 
 
@@ -8,22 +7,20 @@ include("login_process.php");
 
 
 session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $symbol = $_SESSION['symbolNo'];
-
-    //when the exam is completed, execute this query
-    $sql = "UPDATE student SET completionStatus = 1 WHERE id = ?";
-    $stmt = $db->prepare($sql);
+if ($symbol) {
+    $sql = "UPDATE users SET CompletionStatus = 1 WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $symbol);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        // Update was successful
-        echo "Exam completion status updated successfully.";
+        echo "Completion status updated successfully.";
     } else {
-        // Error updating status
-        echo "Error updating exam completion status.";
+        echo "Error updating completion status.";
     }
+} else {
+    echo "User not found.";
 }
+
+
 ?>
