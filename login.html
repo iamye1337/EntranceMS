@@ -39,24 +39,20 @@
                     </div>
                     <form action="login_process.php" onsubmit="return isvalid()" method="post">
                         <div class="input-group mb-3">
-                            <input id="symbolNo" name="symbolNo" autofocus type="text" class="form-control form-control-lg bg-light fs-6"
-                                placeholder="Symbol Number">
+                            <input id="symbolNo" name="symbolNo" autofocus type="text"
+                                class="form-control form-control-lg bg-light fs-6" placeholder="Symbol Number">
                         </div>
                         <div class="input-group mb-3">
-                            <button type="submit" name="submit"
-                                    class="btn btn-lg btn-primary w-100 fs-6">Login</button></a>
+                            <button type="submit" name="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                         </div>
                         <div class="forgot">
                             <small><a href="#">Problem Logging in?</a></small>
                         </div>
-                        <div class="forgot">
-                            <small><a href="exambuilder.html">Teacher Login</a></small>
-                        </div>
                     </form>
                     <script>
-                        function isvalid(){
+                        function isvalid() {
                             var symbol = document.getElementById(symbolNo).value;
-                            if(symbol.length==""){
+                            if (symbol.length == "") {
                                 alert("Symbol number cannot be empty!");
                                 return false;
                             }
