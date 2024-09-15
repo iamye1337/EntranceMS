@@ -3,7 +3,7 @@ session_start();
 include("database/connectdb.php");
 
 //query that fetches datas from table
-$sql = "SELECT * FROM student";
+$sql = "SELECT * FROM stuLogin";
 
 //execute query
 $result = $conn->query($sql);
@@ -50,7 +50,9 @@ if ($result->num_rows > 0) {
                     <img src="images/profpic.png" class="img-fluid" style="max-height: 140px;">
                 </div>
                 <div class="col p-5 big-text">
-                    <p><?php echo $name; ?></p>
+                    <p>
+                        <?php echo $name; ?>
+                    </p>
                 </div>
             </div>
             <!--------------------------- Middle Boxes (Credentials) (*maybe make boxes around them)----------------------------->
@@ -58,35 +60,42 @@ if ($result->num_rows > 0) {
                 <div class="col me-3">
                     <div class="d-flex">
                         <p class="fw-medium p-2">Father's Name:</p>
-                        <p class="p-2"><?php echo $fName; ?></p>
+                        <p class="p-2">
+                            <?php echo $fName; ?>
+                        </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Mother's Name:</p>
-                        <p class="p-2"><?php echo $mName; ?></p>
+                        <p class="p-2">
+                            <?php echo $mName; ?>
+                        </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Contact Number:</p>
-                        <p class="p-2"><?php echo $contactNo; ?></p>
+                        <p class="p-2">
+                            <?php echo $contactNo; ?>
+                        </p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex">
                         <p class="fw-medium p-2">Date of Birth:</p>
-                        <p class="p-2"><?php echo $doB; ?></p>
+                        <p class="p-2">
+                            <?php echo $doB; ?>
+                        </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Address:</p>
-                        <p class="p-2"><?php echo $address; ?></p>
+                        <p class="p-2">
+                            <?php echo $address; ?>
+                        </p>
                     </div>
-                    <!-- <div class="d-flex">
-                        <p class="fw-medium p-2">Contact Number:</p>
-                        <p class="p-2"><?php echo $contactNo; ?></p>
-                    </div> -->
                 </div>
             </div>
             <!-- take exam button -->
-            <div class="input-group"  >
-                <a href="completionStatus.php" class="w-100" type="submit"><button class="btn btn-lg btn-primary w-100">Take the Test</button></a>
+            <div class="input-group">
+                <a href="completionStatus.php" class="w-100" type="submit"><button
+                        class="btn btn-lg btn-primary w-100">Take the Test</button></a>
             </div>
         </div>
     </div>
@@ -97,6 +106,7 @@ if ($result->num_rows > 0) {
 </html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,6 +149,7 @@ if ($result->num_rows > 0) {
         }
     </style>
 </head>
+
 <body>
     <aside class="sidebar">
         <h2>Online Examination </h2>
@@ -158,6 +169,7 @@ if ($result->num_rows > 0) {
             </ul>
         </ul>
     </aside>
-    
+
 </body>
+
 </html>

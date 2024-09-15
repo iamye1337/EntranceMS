@@ -1,13 +1,12 @@
 <?php
-include("database/connectdb.php");
+include"database/connectdb.php";
 
 //process starts
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $symbol = $_POST['symbolNo'];
-
     // SQL query to check if the symbol number exists in the database
-    $sql1 = "SELECT * FROM student WHERE Symbol_No = '$symbol'";
-    // $sql2 = "SELECT completion_status FROM student WHERE Symbol_No = '$symbol'";
+    $sql1 = "SELECT * FROM stuLogin WHERE Symbol_No = '$symbol'";
+    // $sql2 = "SELECT completion_status FROM stuLogin WHERE Symbol_No = '$symbol'";
     $result = $conn->query($sql1);
     // $completionStatus = $conn->query($sql2);
 
@@ -17,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // User exists, login success
             $_SESSION['symbolNo'] = $symbol;
             //when login is succesfull it takes you to the profile page 
-            header("Location: profile.php");
+            header(header: "Location: profile.php");
             exit();
         // }
 
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //     //In Attempt to relogging in using the same symbol number
-//     $sql = "SELECT completion_status FROM student WHERE Symbol_No = '$symbol'";
+//     $sql = "SELECT completion_status FROM stuLogin WHERE Symbol_No = '$symbol'";
 
 
     //     if ($completionStatus == 1) {
@@ -49,4 +48,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
-?>
