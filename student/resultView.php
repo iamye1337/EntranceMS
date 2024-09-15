@@ -1,9 +1,9 @@
 <?php
-session_start();
-include"database/connectdb.php";
+// session_start();
+include"../database/connectdb.php";
 
 //query that fetches datas from table
-$sql = "SELECT * FROM stuLogin";
+$sql = "SELECT * FROM stuInfo";
 
 //execute query
 $result = $conn->query(query: $sql);
@@ -15,18 +15,12 @@ if ($result->num_rows > 0) {
     // Store user data in variables
     $name = $row["Name"];
     $fName = $row["Fathers_Name"];
-    $mName = $row["Mothers_Name"];
-    $doB = $row["Date_of_Birth"];
-    $address = $row["Address"];
     $contactNo = $row["Contact_No"];
     $date = $row["examDate"];
 } else {
     echo "User not found.";
 }
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +29,8 @@ if ($result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <title><?php echo $name; ?>'s Result </title>
 </head>
 
@@ -49,7 +43,7 @@ if ($result->num_rows > 0) {
     <!-- action bar -->
     <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
-        <img src="images/asarshaLogo.png" style="height: 70px;" alt="">
+        <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
     </div>
     <!-- title bar end -->
 
@@ -62,7 +56,7 @@ if ($result->num_rows > 0) {
             <!-- Top name section -->
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <img src="images/profpic.png" class="img-fluid" style="max-height: 140px;">
+                    <img src="../images/profpic.png" class="img-fluid" style="max-height: 140px;">
                 </div>
                 <div class="col row">
                     <div class="col pt-3 ps-5 pe-5 big-text">
@@ -108,7 +102,7 @@ if ($result->num_rows > 0) {
 
         </div>
     </div>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

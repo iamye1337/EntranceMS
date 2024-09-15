@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("database/connectdb.php");
+include("../database/connectdb.php");
 
 //query that fetches datas from table
-$sql = "SELECT * FROM stuLogin";
+$sql = "SELECT * FROM stuInfo";
 
 //execute query
 $result = $conn->query($sql);
@@ -34,8 +34,8 @@ if ($result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <title><?php echo $name; ?>'s Profile </title>
 </head>
 
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
             <!--------------------------- Top Box (profilepicL, NameR) ----------------------------->
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <img src="images/profpic.png" class="img-fluid" style="max-height: 140px;">
+                    <img src="../images/profpic.png" class="img-fluid" style="max-height: 140px;">
                 </div>
                 <div class="col p-5 big-text">
                     <p>
