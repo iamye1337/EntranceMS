@@ -47,7 +47,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <button id="submit" type="submit" name="submit" class="btn btn-lg w-100 fs-6" style="background-color: rgb(192, 47, 47); color: white;">Login</button>
-                            
+
                             <!-- TEACHER LOGIN CHECK LOGIC -->
                             <script>
                             const button = document.getElementById('submit');
@@ -69,21 +69,11 @@
                         <div class="forgot">
                             <small><a href="#">Problem Logging in?</a></small>
                         </div>
-                        <script>
-                            function isvalid(){
-                                var symbol = document.getElementById(symbolNo).value;
-                                if(symbol.length==""){
-                                alert("Symbol number cannot be empty!");
-                                return false;
-                            }
-
-                        }
-                    </script>
                 </div>
             </div>
         </div>
     </div>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
