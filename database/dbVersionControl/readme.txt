@@ -9,7 +9,7 @@ STEPS:
     mysqldump -u root -p <databaseName> > <path to dbVersionControl folder in this repo with new file name>
 
     For example:
-    mysqldump -u root -p entrancems > C:\xampp\htdocs\EntranceMS\database\dbVersionControl\myChangedDatabase.sql
+    mysqldump -u root -p entrancems > C:\xampp\htdocs\EntranceMS\database\dbVersionControl\entrancems0.sql
 
 now your changes are backed up
 
