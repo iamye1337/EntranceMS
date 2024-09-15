@@ -1,6 +1,6 @@
 <?php
 // Database connection
-include("database/connectdb.php");
+include("../database/connectdb.php");
 
 
 // SQL query to fetch data from the users table

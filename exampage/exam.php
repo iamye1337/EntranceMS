@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <title>Examination</title>
 </head>
 
@@ -22,7 +22,7 @@
         <img src="images/asarshaLogo.png" style="height: 70px;" alt="">
         <!-- question number -->
         <p class="align-self-center fs-5" id="qnIndicator"></p>
-        <!-- timer (***logic implementation left) -->
+        <!-- timer -->
         <p class="align-self-center fs-5" id="timer">Timer:
             <small id="hours">
 
@@ -44,40 +44,27 @@
     <div class="container d-none" id="question container">
         {
         "Question 1":{
-            "Qn": "How many seconds are present in a day?",
-            "options":{
-                "option1": "86400#$",
-                "option2": "83239",
-                "option3": "64000",
-                "option4": "55555"
-            }
-         },
-         "Question 2":{
-            "Qn": "which planet is closest to the earth?",
-            "options":{
-                "option1": "Mercury#$",
-                "option2": "Venus",
-                "option3": "Mars",
-                "option4": "Uranus"
-            }
-         }
+        "Qn": "How many seconds are present in a day?",
+        "options":{
+        "option1": "86400#$",
+        "option2": "83239",
+        "option3": "64000",
+        "option4": "55555"
+        }
+        },
+        "Question 2":{
+        "Qn": "which planet is closest to the earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Venus",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        }
         }
         <!-- php code to fetch the -->
-         <!-- json format must be used! -->
-<!--           
-         <?php
-         $myObj = new stdClass();
-         $myObj->name = "Geeks";
-         $myObj->college="NIT";
-         $myObj->gender = "Male";
-         $myObj->age = 30;
-         
-         $myJSON = json_encode($myObj);
-         
-         echo $myJSON;
-         ?>
-
-
+        <!-- json format must be used! -->
+        <!--          
          Note that right option must be labelled with #$ at the end. This process must be done when storing answers in database which is done using the code "not manually"
         
           -->
@@ -91,7 +78,7 @@
             <div class="col right-box">
                 <div class="row align-items-center">
                     <div class="header-text" id="questionBox">
-                        <h2 id="qn number">Question (number)</h2>
+                        <h2 id="qn number" value="5">Question (number)</h2>
                         <p id="question">sdfsdfsdfsd</p>
                     </div>
                 </div>
@@ -106,30 +93,33 @@
 
                 </div>
                 <!-- options -->
+                <!-- <form action="processRadio.php" method="POST"> -->
                 <div class="ps-3 pb-5">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"  id="Option1">
-                        <label class="form-check-label options" for="Option1">Option 1</label>
+                        <input class="form-check-input" type="radio" name="option" id="Option1" value="1">
+                        <label class="form-check-label options" for="Option1"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"  id="Option2">
-                        <label class="form-check-label options" for="Option2">Option 2</label>
+                        <input class="form-check-input" type="radio" name="option" id="Option2" value="2">
+                        <label class="form-check-label options" for="Option2"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"  id="Option3">
-                        <label class="form-check-label options" for="Option3">Option 3</label>
+                        <input class="form-check-input" type="radio" name="option" id="Option3" value="3">
+                        <label class="form-check-label options" for="Option3"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"  id="Option4">
-                        <label class="form-check-label options" for="Option4">Option 4</label>
+                        <input class="form-check-input" type="radio" name="option" id="Option4" value="4">
+                        <label class="form-check-label options" for="Option4"></label>
                     </div>
+                    
                 </div>
+                <!-- </form> -->
             </div>
         </div>
     </div>
     </div>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/exam.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/exam.js"></script>
 </body>
 
 </html>
