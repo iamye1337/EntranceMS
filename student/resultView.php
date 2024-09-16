@@ -1,9 +1,10 @@
 <?php
-// session_start();
-include"../database/connectdb.php";
+session_start();
+include "../database/connectdb.php";
 
 //query that fetches datas from table
-$sql = "SELECT * FROM stuInfo";
+$symbol = $_SESSION['symbolNo'];
+$sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
 
 //execute query
 $result = $conn->query(query: $sql);
@@ -17,6 +18,8 @@ if ($result->num_rows > 0) {
     $fName = $row["Fathers_Name"];
     $contactNo = $row["Contact_No"];
     $date = $row["examDate"];
+    $address = $row["Address"];
+    $obtMarks = $row["result"];
 } else {
     echo "User not found.";
 }
@@ -44,7 +47,13 @@ if ($result->num_rows > 0) {
     <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
         <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
+        <form action="logout.php" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+
     </div>
+
+
     <!-- title bar end -->
 
     <!----------------------- Main Container -------------------------->
@@ -73,7 +82,15 @@ if ($result->num_rows > 0) {
             </div>
             <!-- Top Name section end -->
 
-            <div class="row-auto g-1 rounded-5 mt-5" style="background-color: green;">&ensp;</div>
+            <!-- Dynamic Progress Bar -->
+            <div class="row-auto g-1 rounded-5 mt-5">
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="<?php echo $obtMarks; ?>"
+                        aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $obtMarks; ?>%;">
+                        <?php echo $obtMarks; ?> marks
+                    </div>
+                </div>
+            </div>
 
             <!-- test date bar -->
             <div class="row pt-5">
@@ -86,11 +103,12 @@ if ($result->num_rows > 0) {
                 <div class="row">
                     <div class="col">
                         <p>Total Score:</p>
-                        <p class="fs-2">59 out of 100</p>
+                        <p class="fs-2"><?php echo $obtMarks ?> out of 100</p>
                     </div>
                     <div class="col">
                         <p>Result:</p>
-                        <p class="fs-2 w-30 d-inline-flex ps-3 pe-3 rounded-3" style="background-color: green; color: white;">Passed</p>
+                        <p class="fs-2 w-30 d-inline-flex ps-3 pe-3 rounded-3"
+                            style="background-color: green; color: white;">Passed</p>
                     </div>
                 </div>
             </div>
@@ -102,6 +120,23 @@ if ($result->num_rows > 0) {
 
         </div>
     </div>
+    <!-- <script>
+        function updateProgressBar(progress) {
+            const progressBar = document.querySelector('.progress-Bar');
+            progressBar.style.width = progress
+                + '%';
+        }
+
+        // Fetch the initial progress value
+        fetch('progressbar.php')
+            .then(response => response.json())
+            .then(data => {
+                updateProgressBar(data.progress);
+            })
+        // .catch(error => console.error('Error:', error));
+
+
+    </script> -->
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 

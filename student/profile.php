@@ -1,9 +1,13 @@
 <?php
-session_start();
 include("../database/connectdb.php");
+include("../student/login_process.php");
 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+$symbol = $_SESSION['symbolNo'];
 //query that fetches datas from table
-$sql = "SELECT * FROM stuInfo";
+$sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
 
 //execute query
 $result = $conn->query($sql);
@@ -15,7 +19,7 @@ if ($result->num_rows > 0) {
     // Store user data in variables
     $name = $row["Name"];
     $fName = $row["Fathers_Name"];
-    $mName = $row["Mothers_Name"];
+    $mName = $row["Mothers_name"];
     $doB = $row["Date_of_Birth"];
     $address = $row["Address"];
     $contactNo = $row["Contact_No"];
@@ -40,6 +44,7 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
+
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <!----------------------- Question Container -------------------------->
@@ -168,8 +173,7 @@ if ($result->num_rows > 0) {
 
             </ul>
         </ul>
-    </aside>
-
+    </aside> 
 </body>
 
 </html>
