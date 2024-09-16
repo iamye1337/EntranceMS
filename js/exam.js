@@ -4,7 +4,6 @@ let totalQuestions = 10;
 
 
 
-
 // this is fetching question from exam.php
 
 // fetching question and converting to json format
@@ -27,6 +26,11 @@ let qnIndicator = document.getElementById('qnIndicator');
 
 
 let options = document.querySelectorAll('.options');
+
+const radios = document.querySelectorAll('input[type="radio"]');
+const storedValue = '3';
+// const storedValue = localStorage.getItem(`qid${questionCounter}`);
+
 
 
 function questionUpdater() {
@@ -53,25 +57,16 @@ function optionsCreator() {
             element.classList.add('correct');
         }
     });
-    // const radios = document.querySelectorAll('.options')
-    // radios.forEach(element => {
-    //     if (`${element.value}` != localStorage.getItem(`qid${element.value}`))
-    //         element.checked = false;
-    //     else
-    //         element.checked = true;
-}
 
-document.getElementById('next').addEventListener('click', function () {
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach((radio, index) => {
-        if (`${index}` != localStorage.getItem(`qid${radio.value}`))
-            radio.checked = false;
-        else
-        radio.checked = true;
+    const storedValue = localStorage.getItem(`qid${questionCounter}`);
+    radios.forEach((radio) => {
+        if (radio.value === storedValue) {
+            radio.checked = true;  // Check if stored value matches radio value
+        } else {
+            radio.checked = false;  // Uncheck otherwise
+        }
     });
-});
-
-
+}
 
 
 // Navigating Questions
@@ -82,29 +77,29 @@ nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
 
-function submit(){
-    if (confirm("are you sure?")){
+function submit() {
+    if (confirm("are you sure?")) {
         // Number to be sent to the server
-        let resultData={
-            "marks":correctedProgress.length
+        let resultData = {
+            "marks": correctedProgress.length
         }
 
 
-        
-        fetch('/entrancems/exampage/partials/_handle_submission.php',{
-            "method":"POST",
-            "headers":{
+
+        fetch('/entrancems/exampage/partials/_handle_submission.php', {
+            "method": "POST",
+            "headers": {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            "body":JSON.stringify(resultData)
+            "body": JSON.stringify(resultData)
         })
-        .then(response => response.text()) 
-        .then(result => {
-             console.log('Success:', result);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.text())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
         // console.log("pressed confirm");
     }
@@ -177,7 +172,7 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 
 // question fetch function
 
-let correctedProgress=[];
+let correctedProgress = [];
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
 
@@ -185,13 +180,13 @@ function saveProgress(questionNum, selectedOption) {
 
     localStorage.setItem('qid' + questionNum, selectedOption);
 
-    if(questionObj.options.correctOption == 'option'+selectedOption){
+    if (questionObj.options.correctOption == 'option' + selectedOption) {
         correctedProgress.push('qid' + questionNum);
         // no need to store in local storage acutally
         // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
     }
-    else{
-        if(correctedProgress.includes('qid'+questionNum)){
+    else {
+        if (correctedProgress.includes('qid' + questionNum)) {
             correctedProgress.pop('qid' + questionNum);
             // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
         }
