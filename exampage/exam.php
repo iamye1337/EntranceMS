@@ -116,6 +116,7 @@
                 <!-- </form> -->
             </div>
         </div>
+        <button class="btn btn-primary m-3 fs-18" id="next" style="width: 200px;">Submit</button>
     </div>
     </div>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>

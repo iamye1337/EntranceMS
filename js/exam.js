@@ -143,3 +143,22 @@ window.onload = function () {
     let questionNum = loadProgress();
     // Load and display the question based on questionNum
 };
+
+
+//make submit button visible when user gets pass 80 questions
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('examForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Add event listener for all input fields in the form
+    form.addEventListener('input', function () {
+        const answered = countAnsweredQuestions();
+        if (answered >= 80) {
+            // Show the submit button when 80 questions are answered
+            submitBtn.style.display = 'block';
+        } else {
+            // Hide the submit button if less than 80 questions are answered
+            submitBtn.style.display = 'none';
+        }
+    });
+});
