@@ -69,9 +69,9 @@
         </p>
         <div class="qst_status">
             <ul  class="student-progress">
-                <li class="student-attempt">Attempted :<span >0
+                <li class="student-attempt">Attempted :<span id="attempted-qn">0
                         / 100</span></li>
-                <li class="student-mark">Unanswered :<span >0</span></li>
+                <li class="student-unattempt">Unanswered :<span id="unattempted-qn">0</span></li>
             </ul>
         </div>
         <!-- buttons -->
@@ -82,7 +82,7 @@
     </div>
 
     <!-- add correct option -->
-    <div class="container d-none" id="question container">
+    <div class="container d-none" id="question-container">
         {
         "Question 1":{
         "Qn": "How many seconds are present in a day?",
@@ -188,7 +188,7 @@
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center h-50">
         <!----------------------- Question Container -------------------------->
-        <div class="row border rounded-5 p-2 bg-white shadow box-area">
+        <div class="row border rounded-5 p-2 bg-white shadow box-area" id="question-form">
             <!--------------------------- Left Box (question) ----------------------------->
             <div class="col right-box">
                 <div class="row align-items-center">
@@ -369,7 +369,9 @@
     </div>
     </div>
     <script>
-        
+        window.onbeforeunload = function () {
+            return "Data will be lost if you leave the page, are you sure?";
+        };
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
