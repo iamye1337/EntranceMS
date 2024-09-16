@@ -1,5 +1,9 @@
 localStorage.clear();
 let questionCounter = 1;
+let totalQuestions = 10;
+
+
+
 
 // this is fetching question from exam.php
 
@@ -26,7 +30,7 @@ let options = document.querySelectorAll('.options');
 
 
 function questionUpdater() {
-    qnIndicator.innerText = `Question ${questionCounter} of 100`;
+    qnIndicator.innerText = `Question ${questionCounter} of ${totalQuestions}`;
     questionNum.innerText = `Question ${questionCounter}`;
     questionObj = JSON.parse(localStorage.getItem(`Question ${questionCounter}`));
     question.innerText = questionObj.Qn;
@@ -62,10 +66,36 @@ let prevBtn = document.getElementById('prev');
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
+function submit(){
+    if (confirm("are you sure?")){
+        
+        // console.log("pressed confirm");
+    }
+    else{
+        console.log("canceled");
+    }
+}
+
+// next to submit button 
+function addSubmit(){
+    nextBtn.textContent = "Submit";
+    nextBtn.removeEventListener('click', next);
+    nextBtn.addEventListener('click', submit);
+}
+
+// submit to next button 
+function removeSubmit(){
+    nextBtn.textContent = "Next";
+    nextBtn.removeEventListener('click', submit);
+    nextBtn.addEventListener('click', next);
+}
 
 
 function next() {
-    if (questionCounter == 100) {
+    if (questionCounter == totalQuestions-1)
+        addSubmit();
+
+    if (questionCounter == totalQuestions) {
         return;
     }
     questionCounter++;
@@ -73,6 +103,8 @@ function next() {
 }
 
 function prev() {
+    if(questionCounter == totalQuestions)
+        removeSubmit();
     if (questionCounter == 1) {
         return;
     }
@@ -86,7 +118,7 @@ let minutes = document.getElementById('minutes');
 let seconds = document.getElementById('seconds');
 
 let currentTime = new Date().getTime();
-const updatedTime = new Date(currentTime + 2 * 60 * 60 * 1000);
+const updatedTime = new Date(currentTime + .5 * 60 * 60 * 1000);
 
 function updateCountdowntime() {
 
@@ -110,14 +142,15 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
-    localStorage.setItem('currentQuestion', questionNum);
-    localStorage.setItem('selectedOption' + questionNum, selectedOption);
+    // localStorage.setItem('currentQuestion', questionNum);
+    if (questionObj.Qn.correctOption == selectedOption)
+    localStorage.setItem('qid' + questionNum, selectedOption);
 }
 
 // Load the saved progress from localStorage
 function loadProgress() {
     let currentQuestion = localStorage.getItem('currentQuestion') || 1;
-    let selectedOption = localStorage.getItem('selectedOption' + currentQuestion);
+    let selectedOption = localStorage.getItem('qid' + currentQuestion);
 
     // Set the question and option based on saved data
     // Set the radio button to the saved option if available
@@ -133,7 +166,7 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
     radioButton.addEventListener('change', function () {
         let selectedOption = this.value;
         // let currentQuestion = document.getElementById('qn number').value;
-        let currentQuestion = questionNum;
+        let currentQuestion = questionCounter;
         saveProgress(currentQuestion, selectedOption);
     });
 });
