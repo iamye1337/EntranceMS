@@ -293,7 +293,6 @@
     </div> -->
     </div>
     </div>
-    </app-exam-mode><!----><!----><!----><!----><!----></app-student-daily-capsule><!----></div>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
 </body>
