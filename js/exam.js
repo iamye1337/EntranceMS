@@ -27,7 +27,7 @@ function updateUnansweredQn(){
 // this is fetching question from exam.php
 
 // fetching question and converting to json format
-let jsonQuestion = document.getElementById('question container').innerText;
+let jsonQuestion = document.getElementById('question-container').innerText;
 jsonQuestion = JSON.parse(jsonQuestion);
 // console.log(jsonQuestion);
 
@@ -253,6 +253,15 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 // };
 
 
+
+
+// Call loadProgress when the page loads
+window.onload = function () {
+    let questionNum = loadProgress();
+    // Load and display the question based on questionNum
+};
+
+
 //make submit button visible when user gets pass 80 questions
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('examForm');
@@ -281,3 +290,24 @@ let submitStr = document.getElementById('next').textContent;
         return "Data will be lost if you leave the page, are you sure?";
     };
 }
+
+// making the attempted questions work 
+let attemptedQuestions = 0;
+const nextButton = document.getElementById('next');
+const attemptedCountDisplay = document.getElementById('attempted-count');
+const exampage = document.getElementById('question-form');
+
+// Event listener for the "Next" button
+nextButton.addEventListener('click', function () {
+    // Check if one of the radio buttons is selected
+    const selectedOption = exampage.querySelector('input[type="radio"]:checked');
+
+    if (selectedOption) {
+        attemptedQuestions++;  // Increment attempted question count
+        attemptedCountDisplay.textContent = attemptedQuestions; // Update the display
+
+        // Clear the selected option for the next question
+        exampage.reset();
+
+    }
+});
