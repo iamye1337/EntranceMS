@@ -1,5 +1,5 @@
 <?php
-include"../database/connectdb.php";
+include "../database/connectdb.php";
 
 //process starts
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

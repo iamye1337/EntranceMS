@@ -1,3 +1,27 @@
+<?php
+include "/database/connectdb.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $symbolNumber = $_POST['symbolNo'];
+    $sql1 = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbolNumber'";
+    $result = $conn->query($sql1);
+
+
+    if ($result->num_rows > 0) {
+        $_SESSION['symbolNo'] = $symbol;
+        header(header: "Location: profile.php");
+        exit();
+    } else {
+        echo '<script>
+            window.location.href = "login.html";
+            alert("Login Failed. Symbol Number not registered")
+        </script>';
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,16 +61,13 @@
                         <h2>Welcome</h2>
                         <p>Adarsha Saula Yubak Secondary School</p>
                     </div>
-                    <form action="login_process.php" onsubmit="return isvalid()" method="post">
+                    <form action="<?= htmlentities($_SERVER['PHP_SELF']); ?>" onsubmit="return isvalid()" method="post">
                         <div class="input-group mb-3">
-                            <input id="symbolNo" name="symbolNo" autofocus type="text"
+                            <input id="symbolNo" name="symbolNumber" autofocus type="text"
                                 class="form-control form-control-lg bg-light fs-6" placeholder="Symbol Number">
                         </div>
                         <div class="input-group mb-3">
                             <button type="submit" name="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
-                        </div>
-                        <div class="forgot">
-                            <small><a href="#">Problem Logging in?</a></small>
                         </div>
                     </form>
                     <script>

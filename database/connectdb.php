@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "entrance_ms";
 $password = "entrance_ms@Mysql123";
-$dbname = "entrancems";
+$dbname = "entrance_ms";
 
 // Create connection
 $conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
