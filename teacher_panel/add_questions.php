@@ -1,14 +1,5 @@
 <?php
-$HOST = "localhost";
-$USERNAME = "root";
-$PASSWORD = "";
-$DB_NAME = "entrancems"; // Database name-> entrancems
-
-try {
-  $con = new PDO("mysql:host=$HOST;dbname=$DB_NAME", $USERNAME, $PASSWORD);
-} catch (Exception $e) {
-  echo $e->getMessage();
-}
+include("../database/connectdb.php");
 
 //SQL for creating table in database (same table properties for grade 6,7,8,9)
 
@@ -36,6 +27,8 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Add Questions</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 
@@ -49,19 +42,36 @@ try {
 <body>
 
   <!-- navbar  -->
-  <nav class="navbar bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../images/adarshaLogo.png" alt="Logo" width="30" height="auto" class="d-inline-block align-text-top">
         Adarsha Saula Yubak Secondary School
       </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link  " aria-current="page" href="teach_home.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="add_questions.php">Add Questions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-disabled="true" href="QnView.php">View Questions</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </nav>
 
   <main class="m-4">
     <div class="mb-4">
       <!-- Back to Teacher Homepage -->
-      <a href="#" class="btn btn-success">Back to Home</a>
+      <a href="teach_home.php" class="btn btn-success">Back to Home</a>
 
       <!-- Teacher logout -> (Homepage/index) |Login Page for now*| -->
       <div class="d-flex float-end"> <a href="teach_login.php" type="button" class="btn btn-secondary">
@@ -111,7 +121,8 @@ try {
     <div class="d-flex justify-content-center">
       <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="fill:white; width:20px;">
-          <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
         </svg>
         ADD QUESTIONS
       </button>

@@ -49,13 +49,15 @@
                             <small><a href="#">Problem Logging in?</a></small>
                         </div>
                     </form>
+
                     <script>
                         function isvalid() {
-                            var symbol = document.getElementById(symbolNo).value;
-                            if (symbol.length == "") {
+                            const symbol = document.getElementById('symbolNo');
+                            if (symbol.value === '') {
                                 alert("Symbol number cannot be empty!");
                                 return false;
                             }
+                            return true;
 
                         }
                     </script>
