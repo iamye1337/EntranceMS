@@ -44,6 +44,29 @@
 </head>
 
 <body>
+        
+    <!-- Modal -->
+    <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="submissionModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="modal-submit-btn">Submit</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
     <!-- title bar -->
     <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
         <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
