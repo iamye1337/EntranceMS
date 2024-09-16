@@ -26,8 +26,10 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `student`
 --
-
-CREATE TABLE `student` (
+CREATE USER 'test'@'localhost' IDENTIFIED WITH caching_sha2_password BY '***';
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+CREATE DATABASE `entrance_ms`;
+CREATE TABLE `entrance_ms`.`student` (
   `SN` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Symbol_Number` varchar(50) NOT NULL,
@@ -42,7 +44,7 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`SN`, `Name`, `Symbol_Number`, `Fathers_Name`, `Mothers_Name`, `Date_of_Birth`, `Address`, `Contact_Number`) VALUES
+INSERT INTO `entrance_ms`.`student` (`SN`, `Name`, `Symbol_Number`, `Fathers_Name`, `Mothers_Name`, `Date_of_Birth`, `Address`, `Contact_Number`) VALUES
 (4, 'test', 'test', 'test', 'test', 'test', 'test', '1111111111');
 COMMIT;
 

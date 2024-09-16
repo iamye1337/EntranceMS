@@ -1,7 +1,7 @@
 <?php
 $serverName = "localhost";
-$userName = "root";
-$password = "";
+$userName = "entrance_ms";
+$password = "entrance_ms@Mysql123";
 $databaseName = "entrance_ms";
 
 // Create connection
