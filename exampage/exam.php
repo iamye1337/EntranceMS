@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style.css">
     <title>Examination</title>
 
-    <style>
+    <!-- <style>
         .right__block {
             background-color: #dbe6e6 !important;
             width: 330px;
@@ -39,7 +39,7 @@
             grid-template-rows: repeat(10, 1fr);
             border: 1px solid black;
         } */
-    </style>
+    </style> -->
 
 </head>
 
