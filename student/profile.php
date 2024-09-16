@@ -1,29 +1,5 @@
 <?php
-session_start();
-include("../database/connectdb.php");
-
-//query that fetches datas from table
-$sql = "SELECT * FROM stuInfo";
-
-//execute query
-$result = $conn->query($sql);
-
-//fetch data
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-
-    // Store user data in variables
-    $name = $row["Name"];
-    $fName = $row["Fathers_Name"];
-    $mName = $row["Mothers_Name"];
-    $doB = $row["Date_of_Birth"];
-    $address = $row["Address"];
-    $contactNo = $row["Contact_No"];
-} else {
-    echo "User not found.";
-}
-
-
+include "../session_handler.php";
 ?>
 
 
@@ -36,7 +12,7 @@ if ($result->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <title><?php echo $name; ?>'s Profile </title>
+    <title><?= $_SESSION["userName"] ?>'s Profile </title>
 </head>
 
 <body>
@@ -51,7 +27,7 @@ if ($result->num_rows > 0) {
                 </div>
                 <div class="col p-5 big-text">
                     <p>
-                        <?php echo $name; ?>
+                    <?= $_SESSION["userName"]; ?>
                     </p>
                 </div>
             </div>
@@ -61,19 +37,19 @@ if ($result->num_rows > 0) {
                     <div class="d-flex">
                         <p class="fw-medium p-2">Father's Name:</p>
                         <p class="p-2">
-                            <?php echo $fName; ?>
+                        <?= $_SESSION["userFatherName"]; ?>
                         </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Mother's Name:</p>
                         <p class="p-2">
-                            <?php echo $mName; ?>
+                        <?= $_SESSION["userMotherName"]; ?>
                         </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Contact Number:</p>
                         <p class="p-2">
-                            <?php echo $contactNo; ?>
+                        <?= $_SESSION["userContactNumber"]; ?>
                         </p>
                     </div>
                 </div>
@@ -81,13 +57,13 @@ if ($result->num_rows > 0) {
                     <div class="d-flex">
                         <p class="fw-medium p-2">Date of Birth:</p>
                         <p class="p-2">
-                            <?php echo $doB; ?>
+                        <?= $_SESSION["userDateOfBirth"]; ?>
                         </p>
                     </div>
                     <div class="d-flex">
                         <p class="fw-medium p-2">Address:</p>
                         <p class="p-2">
-                            <?php echo $address; ?>
+                        <?= $_SESSION["userAddress"]; ?>
                         </p>
                     </div>
                 </div>

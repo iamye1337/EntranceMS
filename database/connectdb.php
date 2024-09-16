@@ -1,14 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "entrance_ms";
+$serverName = "localhost";
+$userName = "entrance_ms";
 $password = "entrance_ms@Mysql123";
-$dbname = "entrance_ms";
+$databaseName = "entrance_ms";
 
 // Create connection
-$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $dbname);
+$mysqlConnection = new mysqli(hostname: $serverName, username: $userName, password: $password, database: $databaseName);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysqlConnection->connect_error) {
+    die("Connection failed: " . $mysqlConnection->connect_error);
 }
 ?>

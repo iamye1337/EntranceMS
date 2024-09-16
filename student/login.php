@@ -1,25 +1,38 @@
 <?php
-include "/database/connectdb.php";
+include "../database/connectdb.php";
+include "../session_handler.php";
 
+if (isLoggedIn()) {
+    header("Location:profile.php");
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $symbolNumber = $_POST['symbolNo'];
-    $sql1 = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbolNumber'";
-    $result = $conn->query($sql1);
+    $sqlQuery = "SELECT * FROM `student` WHERE `Symbol_Number` = '{$_POST["symbolNumber"]}'";
+    $queryResult = $mysqlConnection->query($sqlQuery);
 
+    if ($queryResult->num_rows > 0) {
+        //store user data into session
+        $queryData = $queryResult->fetch_assoc();
+        $_SESSION["userName"] = $queryData["Name"];
+        $_SESSION["userFatherName"]   = $queryData["Fathers_Name"];
+        $_SESSION["userMotherName"] = $queryData["Mothers_Name"];
+        $_SESSION["userDateOfBirth"] = $queryData["Date_of_Birth"];
+        $_SESSION["userAddress"] = $queryData["Address"];
+        $_SESSION["userContactNumber"]= $queryData["Contact_No"];
+        $_SESSION["symbolNumber"] = $queryData["Symbol_Number"];
+        $_SESSION["isLoggedIn"] = true;
 
-    if ($result->num_rows > 0) {
-        $_SESSION['symbolNo'] = $symbol;
-        header(header: "Location: profile.php");
-        exit();
+        //close database session
+        $mysqlConnection->close();
+
+        header("Location: profile.php");
     } else {
-        echo '<script>
-            window.location.href = "login.html";
+        echo <<<Javascript
+        <script>
             alert("Login Failed. Symbol Number not registered")
         </script>';
+        Javascript;
     }
 }
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
