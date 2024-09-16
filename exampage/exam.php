@@ -69,9 +69,9 @@
         </p>
         <div class="qst_status">
             <ul  class="student-progress">
-                <li class="student-attempt">Attempted :<span id="attempted-count">0
+                <li class="student-attempt">Attempted :<span id="attempted-qn">0
                         / 100</span></li>
-                <li class="student-mark">Unanswered :<span >0</span></li>
+                <li class="student-unattempt">Unanswered :<span id="unattempted-qn">0</span></li>
             </ul>
         </div>
         <!-- buttons -->
@@ -367,7 +367,12 @@
         </div>
     </div> -->
     </div>
-  </div>
+    </div>
+    <script>
+        window.onbeforeunload = function () {
+            return "Data will be lost if you leave the page, are you sure?";
+        };
+    </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
 </body>
