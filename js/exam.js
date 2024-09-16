@@ -3,6 +3,25 @@ let questionCounter = 1;
 let totalQuestions = 10;
 
 
+// attempted and unanswered qns
+let attempted=document.getElementById('attempted-qn');
+let unanswered=document.getElementById('unattempted-qn');
+attempted.innerText='0';
+unanswered.innerText=totalQuestions;
+
+let attemptedQnTracker=[];
+function updateAttemptedQn(questionNum){
+     if (!attemptedQnTracker.includes(questionNum)) {
+        attemptedQnTracker.push(questionNum);
+    }
+    attempted.innerText=attemptedQnTracker.length;
+}
+
+function updateUnansweredQn(){
+    unanswered.innerText=totalQuestions -  attemptedQnTracker.length;
+}
+
+
 
 
 // this is fetching question from exam.php
@@ -220,6 +239,8 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
         // let currentQuestion = document.getElementById('qn number').value;
         let currentQuestion = questionCounter;
         saveProgress(currentQuestion, selectedOption);
+        updateAttemptedQn(currentQuestion);
+        updateUnansweredQn();
     });
 });
 
