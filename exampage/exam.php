@@ -82,7 +82,7 @@
     </div>
 
     <!-- add correct option -->
-    <div class="container d-none" id="question container">
+    <div class="container d-none" id="question-container">
         {
         "Question 1":{
         "Qn": "How many seconds are present in a day?",
@@ -188,7 +188,7 @@
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center h-50">
         <!----------------------- Question Container -------------------------->
-        <div class="row border rounded-5 p-2 bg-white shadow box-area">
+        <div class="row border rounded-5 p-2 bg-white shadow box-area" id="question-form">
             <!--------------------------- Left Box (question) ----------------------------->
             <div class="col right-box">
                 <div class="row align-items-center">
