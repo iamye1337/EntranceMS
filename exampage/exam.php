@@ -41,129 +41,9 @@
         </div>
     </div>
 
+    <!-- add correct option -->
     <div class="container d-none" id="question container">
-        <!-- prototype start -->
-        <?php
-        session_start();
-        include "../database/connectdb.php";
-
-        //query that fetches datas from table
-        $sql = "SELECT * FROM grade6"; // ***MAKE GRADING SELECTION DYNAMIC
-        
-        //execute query
-        $qn = $conn->query($sql);
-
-        //fetch data
-        if ($qn->num_rows > 0) {
-            $row = $qn->fetch_assoc();
-
-            // Store user data in variables
-            $qnTitle = $row["qnTitle"];
-            $op1 = $row["option1"];
-            $op2 = $row["option2"];
-            $op3 = $row["option3"];
-            $op4 = $row["option4"];
-            // $opr = $row["rightOption"]; //needed??
-        } else {
-            echo "Questions not found.";
-        }
-
-        ?>
         {
-        "Question 1":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 2":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 3":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 4":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 5":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 6":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 7":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 8":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 9":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        },
-        "Question 10":{
-        "Qn": "<?php echo $qnTitle; ?>",
-        "options":{
-        "option1": "<?php echo $op1; ?>",
-        "option2": "<?php echo $op2; ?>",
-        "option3": "<?php echo $op3; ?>",
-        "option4": "<?php echo $op4; ?>"
-        }
-        }
-        }
-        <!-- prototype end -->
-
-        <!-- {
         "Question 1":{
         "Qn": "How many seconds are present in a day?",
         "options":{
@@ -174,7 +54,79 @@
         }
         },
         "Question 2":{
-        "Qn": "which planet is closest to the earth?",
+        "Qn": "which planet is closest to the sun?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Venus",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        },
+        "Question 3":{
+        "Qn": "which planet is c to the earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Ves",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        },
+        "Question 4":{
+        "Qn": "which planet is closest to t",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Venus",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        },
+        "Question 5":{
+        "Qn": "which planet ishe earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Vnus",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        },
+        "Question 6":{
+        "Qn": "w is closest to the earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Veus",
+        "option3": "Ms",
+        "option4": "Uranus"
+        }
+        },
+        "Question 7":{
+        "Qn": "which planeto the earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Venus",
+        "option3": "Mars",
+        "option4": "Uranus"
+        }
+        },
+        "Question 8":{
+        "Qn": "which planet is closest trth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Vnus",
+        "option3": "Mars",
+        "option4": "Uanus"
+        }
+        },
+        "Question 9":{
+        "Qn": "which plosest to the earth?",
+        "options":{
+        "option1": "Mercury#$",
+        "option2": "Vnus",
+        "option3": "Mrs",
+        "option4": "Uranus"
+        }
+        },
+        "Question 10":{
+        "Qn": "which planet is  earth?",
         "options":{
         "option1": "Mercury#$",
         "option2": "Venus",
@@ -182,7 +134,7 @@
         "option4": "Uranus"
         }
         }
-        } -->
+        }
         <!-- php code to fetch the -->
         <!-- json format must be used! -->
         <!--          
@@ -239,6 +191,11 @@
         </div>
     </div>
     </div>
+    <script>
+        window.onbeforeunload = function () {
+            return "Data will be lost if you leave the page, are you sure?";
+        };
+    </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
 </body>
