@@ -42,7 +42,128 @@
     </div>
 
     <div class="container d-none" id="question container">
+        <!-- prototype start -->
+        <?php
+        session_start();
+        include "../database/connectdb.php";
+
+        //query that fetches datas from table
+        $sql = "SELECT * FROM grade6"; // ***MAKE GRADING SELECTION DYNAMIC
+        
+        //execute query
+        $qn = $conn->query($sql);
+
+        //fetch data
+        if ($qn->num_rows > 0) {
+            $row = $qn->fetch_assoc();
+
+            // Store user data in variables
+            $qnTitle = $row["qnTitle"];
+            $op1 = $row["option1"];
+            $op2 = $row["option2"];
+            $op3 = $row["option3"];
+            $op4 = $row["option4"];
+            // $opr = $row["rightOption"]; //needed??
+        } else {
+            echo "Questions not found.";
+        }
+
+        ?>
         {
+        "Question 1":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 2":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 3":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 4":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 5":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 6":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 7":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 8":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 9":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        },
+        "Question 10":{
+        "Qn": "<?php echo $qnTitle; ?>",
+        "options":{
+        "option1": "<?php echo $op1; ?>",
+        "option2": "<?php echo $op2; ?>",
+        "option3": "<?php echo $op3; ?>",
+        "option4": "<?php echo $op4; ?>"
+        }
+        }
+        }
+        <!-- prototype end -->
+
+        <!-- {
         "Question 1":{
         "Qn": "How many seconds are present in a day?",
         "options":{
@@ -61,7 +182,7 @@
         "option4": "Uranus"
         }
         }
-        }
+        } -->
         <!-- php code to fetch the -->
         <!-- json format must be used! -->
         <!--          
@@ -111,7 +232,7 @@
                         <input class="form-check-input" type="radio" name="option" id="Option4" value="4">
                         <label class="form-check-label options" for="Option4"></label>
                     </div>
-                    
+
                 </div>
                 <!-- </form> -->
             </div>
