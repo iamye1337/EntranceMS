@@ -58,7 +58,7 @@
                                 const input_pass = teach_pass.value;
                                 
                                 if(input_pass === password){
-                                    window.location.href = "add_questions.php"; //REDIRECT 
+                                    window.location.href = "teach_home.php"; //REDIRECT 
                                 }
                                 else{
                                     alert('Incorrect Password');

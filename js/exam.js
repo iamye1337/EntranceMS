@@ -81,8 +81,30 @@ let prevBtn = document.getElementById('prev');
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
-function submit() {
-    if (confirm("are you sure?")) {
+
+function submit(){
+    if (confirm("are you sure?")){
+        // Number to be sent to the server
+        let resultData={
+            "marks":correctedProgress.length
+        }
+
+
+        
+        fetch('/entrancems/exampage/partials/_handle_submission.php',{
+            "method":"POST",
+            "headers":{
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "body":JSON.stringify(resultData)
+        })
+        .then(response => response.text()) 
+        .then(result => {
+             console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
         // console.log("pressed confirm");
     }
@@ -155,11 +177,25 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 
 // question fetch function
 
+let correctedProgress=[];
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
-    localStorage.setItem('currentQuestion', questionNum);
-    // if (questionObj.Qn.correctOption == selectedOption)
+
+    // localStorage.setItem('currentQuestion', questionNum);
+
     localStorage.setItem('qid' + questionNum, selectedOption);
+
+    if(questionObj.options.correctOption == 'option'+selectedOption){
+        correctedProgress.push('qid' + questionNum);
+        // no need to store in local storage acutally
+        // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
+    }
+    else{
+        if(correctedProgress.includes('qid'+questionNum)){
+            correctedProgress.pop('qid' + questionNum);
+            // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
+        }
+    }
 }
 
 // // Load the saved progress from localStorage
@@ -186,8 +222,29 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
     });
 });
 
-// // Call loadProgress when the page loads
-// window.onload = function () {
-//     let questionNum = loadProgress();
-//     // Load and display the question based on questionNum
-// };
+
+// Call loadProgress when the page loads
+window.onload = function () {
+    let questionNum = loadProgress();
+    // Load and display the question based on questionNum
+};
+
+
+//make submit button visible when user gets pass 80 questions
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('examForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Add event listener for all input fields in the form
+    form.addEventListener('input', function () {
+        const answered = countAnsweredQuestions();
+        if (answered >= 80) {
+            // Show the submit button when 80 questions are answered
+            submitBtn.style.display = 'block';
+        } else {
+            // Hide the submit button if less than 80 questions are answered
+            submitBtn.style.display = 'none';
+        }
+    });
+});
+
