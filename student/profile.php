@@ -106,7 +106,7 @@ if ($result->num_rows > 0) {
             <!-- other buttons -->
             <div class="row ps-2 pt-3 pe-2" >
                     <a class="col me-1" href="resultView.php"><button class=" btn btn-lg btn-primary" id="viewResult" >View Result</button></a>
-                    <button class="col btn btn-lg btn-primary" id="logout" >Logout</button>
+                    <a href = "logout.php"><button class="col btn btn-lg btn-primary" id="logout" >Logout</button></a>
             </div>
         </div>
     </div>
