@@ -68,7 +68,27 @@ prevBtn.addEventListener('click', prev);
 
 function submit(){
     if (confirm("are you sure?")){
+        // Number to be sent to the server
+        let resultData={
+            "marks":correctedProgress.length
+        }
+
+
         
+        fetch('/entrancems/exampage/partials/_handle_submission.php',{
+            "method":"POST",
+            "headers":{
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "body":JSON.stringify(resultData)
+        })
+        .then(response => response.text()) 
+        .then(result => {
+             console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
         // console.log("pressed confirm");
     }
     else{
@@ -140,11 +160,23 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 
 // question fetch function
 
+let correctedProgress=[];
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
     // localStorage.setItem('currentQuestion', questionNum);
-    if (questionObj.Qn.correctOption == selectedOption)
     localStorage.setItem('qid' + questionNum, selectedOption);
+
+    if(questionObj.options.correctOption == 'option'+selectedOption){
+        correctedProgress.push('qid' + questionNum);
+        // no need to store in local storage acutally
+        // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
+    }
+    else{
+        if(correctedProgress.includes('qid'+questionNum)){
+            correctedProgress.pop('qid' + questionNum);
+            // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
+        }
+    }
 }
 
 // Load the saved progress from localStorage

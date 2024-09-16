@@ -87,19 +87,21 @@
         "Question 1":{
         "Qn": "How many seconds are present in a day?",
         "options":{
-        "option1": "86400#$",
+        "option1": "86400",
         "option2": "83239",
         "option3": "64000",
-        "option4": "55555"
+        "option4": "55555",
+        "correctOption": "option1"
         }
         },
         "Question 2":{
         "Qn": "which planet is closest to the sun?",
         "options":{
-        "option1": "Mercury#$",
+        "option1": "Mercury",
         "option2": "Venus",
         "option3": "Mars",
-        "option4": "Uranus"
+        "option4": "Uranus",
+        "correctOption": "option1"
         }
         },
         "Question 3":{
