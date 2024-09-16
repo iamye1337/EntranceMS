@@ -4,7 +4,7 @@ include("../database/connectdb.php");
 
 
 // SQL query to fetch data from the users table
-$sql = "SELECT * FROM student";
+$sql = "SELECT * FROM stuinfo";
 
 //Execute Query
 $result = $conn->query($sql);
@@ -56,6 +56,10 @@ $result = $conn->query($sql);
                 <th>Address</th>
                 <th>Contact No</th>
                 <th>Completion Status</th>
+                <th>Exam Date</th>
+                <th>Grade</th>
+                <th>Result</th>
+
             </tr>
 
             <?php
@@ -68,11 +72,15 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["Name"] . "</td>";
                     echo "<td>" . $row["Symbol_No"] . "</td>";
                     echo "<td>" . $row["Fathers_Name"] . "</td>";
-                    echo "<td>" . $row["Mothers_Name"] . "</td>";
+                    echo "<td>" . $row["Mothers_name"] . "</td>";
                     echo "<td>" . $row["Date_of_Birth"] . "</td>";
                     echo "<td>" . $row["Address"] . "</td>";
                     echo "<td>" . $row["Contact_No"] . "</td>";
                     echo "<td>" . $row["completionStatus"] . "</td>";
+                    echo "<td>" . $row["examDate"] . "</td>";
+                    echo "<td>" . $row["grade"] . "</td>";
+                    echo "<td>" . $row["result"] . "</td>";
+
                     echo "</tr>";
                 }
             } else {

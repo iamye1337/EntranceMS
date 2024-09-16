@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     // Store user data in variables
     $name = $row["Name"];
     $fName = $row["Fathers_Name"];
-    $mName = $row["Mothers_Name"];
+    $mName = $row["Mothers_name"];
     $doB = $row["Date_of_Birth"];
     $address = $row["Address"];
     $contactNo = $row["Contact_No"];
