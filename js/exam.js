@@ -52,8 +52,10 @@ function optionsCreator() {
         if (element.innerText.includes("#$")) {
             element.innerText = element.innerText.slice(0, element.innerText.length - 2);
             element.classList.add('correct');
+            element.removeAttribute('checked');
         }
     });
+
 }
 
 
@@ -68,7 +70,7 @@ prevBtn.addEventListener('click', prev);
 
 function submit(){
     if (confirm("are you sure?")){
-        
+
         // console.log("pressed confirm");
     }
     else{
@@ -142,8 +144,8 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
-    // localStorage.setItem('currentQuestion', questionNum);
-    if (questionObj.Qn.correctOption == selectedOption)
+    localStorage.setItem('currentQuestion', questionNum);
+    // if (questionObj.Qn.correctOption == selectedOption)
     localStorage.setItem('qid' + questionNum, selectedOption);
 }
 
