@@ -4,6 +4,7 @@ let totalQuestions = 10;
 
 
 
+
 // this is fetching question from exam.php
 
 // fetching question and converting to json format
@@ -110,6 +111,7 @@ function submit() {
     else {
         console.log("canceled");
     }
+    window.location.replace("submitted.html");
 }
 
 // next to submit button 
@@ -222,11 +224,11 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 });
 
 
-// Call loadProgress when the page loads
-window.onload = function () {
-    let questionNum = loadProgress();
-    // Load and display the question based on questionNum
-};
+// // Call loadProgress when the page loads
+// window.onload = function () {
+//     let questionNum = loadProgress();
+//     // Load and display the question based on questionNum
+// };
 
 
 //make submit button visible when user gets pass 80 questions
@@ -250,3 +252,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // auto submit
 setTimeout(sendMarks,.5 * 60 * 60 * 1000);
+
+let submitStr = document.getElementById('next').textContent;
+        if (submitStr !== "Submit"){
+    window.onbeforeunload = function () {
+        return "Data will be lost if you leave the page, are you sure?";
+    };
+}
