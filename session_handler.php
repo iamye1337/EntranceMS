@@ -7,3 +7,9 @@ function isLoggedIn () {
     }
     return false;
 }
+function hasFinishedExam () {
+    if (isset($_SESSION["hasFinishedExam"]) && $_SESSION["hasFinishedExam"] == true) {
+        return true;
+    }
+    return false;
+}
