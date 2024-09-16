@@ -19,7 +19,7 @@
     <!-- action bar -->
     <div class="d-flex justify-content-between p-2" style="background-color: white; margin-bottom: calc(10vh);">
         <!-- logo -->
-        <img src="images/asarshaLogo.png" style="height: 70px;" alt="">
+        <img src="images/adarshaLogo.png" style="height: 70px;" alt="">
         <!-- question number -->
         <p class="align-self-center fs-5" id="qnIndicator"></p>
         <!-- timer -->
@@ -169,7 +169,7 @@
                 <!-- <form action="processRadio.php" method="POST"> -->
                 <div class="ps-3 pb-5">
                     <div class="form-check">
-                        <input class="form-check-input" checked type="radio" name="option" id="Option1" value="1">
+                        <input class="form-check-input" type="radio" name="option" id="Option1" value="1">
                         <label class="form-check-label options" for="Option1"></label>
                     </div>
                     <div class="form-check">

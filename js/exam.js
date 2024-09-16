@@ -39,7 +39,6 @@ function questionUpdater() {
 questionUpdater();
 
 
-
 function optionsCreator() {
     Array.from(options).forEach((element) => {
         if (element.classList.contains("correct")) {
@@ -52,11 +51,25 @@ function optionsCreator() {
         if (element.innerText.includes("#$")) {
             element.innerText = element.innerText.slice(0, element.innerText.length - 2);
             element.classList.add('correct');
-            element.removeAttribute('checked');
         }
     });
-
+    // const radios = document.querySelectorAll('.options')
+    // radios.forEach(element => {
+    //     if (`${element.value}` != localStorage.getItem(`qid${element.value}`))
+    //         element.checked = false;
+    //     else
+    //         element.checked = true;
 }
+
+document.getElementById('next').addEventListener('click', function () {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio, index) => {
+        if (`${index}` != localStorage.getItem(`qid${radio.value}`))
+            radio.checked = false;
+        else
+        radio.checked = true;
+    });
+});
 
 
 
@@ -68,25 +81,25 @@ let prevBtn = document.getElementById('prev');
 nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
-function submit(){
-    if (confirm("are you sure?")){
+function submit() {
+    if (confirm("are you sure?")) {
 
         // console.log("pressed confirm");
     }
-    else{
+    else {
         console.log("canceled");
     }
 }
 
 // next to submit button 
-function addSubmit(){
+function addSubmit() {
     nextBtn.textContent = "Submit";
     nextBtn.removeEventListener('click', next);
     nextBtn.addEventListener('click', submit);
 }
 
 // submit to next button 
-function removeSubmit(){
+function removeSubmit() {
     nextBtn.textContent = "Next";
     nextBtn.removeEventListener('click', submit);
     nextBtn.addEventListener('click', next);
@@ -94,7 +107,7 @@ function removeSubmit(){
 
 
 function next() {
-    if (questionCounter == totalQuestions-1)
+    if (questionCounter == totalQuestions - 1)
         addSubmit();
 
     if (questionCounter == totalQuestions) {
@@ -105,7 +118,7 @@ function next() {
 }
 
 function prev() {
-    if(questionCounter == totalQuestions)
+    if (questionCounter == totalQuestions)
         removeSubmit();
     if (questionCounter == 1) {
         return;
@@ -149,19 +162,19 @@ function saveProgress(questionNum, selectedOption) {
     localStorage.setItem('qid' + questionNum, selectedOption);
 }
 
-// Load the saved progress from localStorage
-function loadProgress() {
-    let currentQuestion = localStorage.getItem('currentQuestion') || 1;
-    let selectedOption = localStorage.getItem('qid' + currentQuestion);
+// // Load the saved progress from localStorage
+// function loadProgress() {
+//     let currentQuestion = localStorage.getItem('currentQuestion') || 1;
+//     let selectedOption = localStorage.getItem('qid' + currentQuestion);
 
-    // Set the question and option based on saved data
-    // Set the radio button to the saved option if available
-    if (selectedOption) {
-        document.querySelector(`input[value="${selectedOption}"]`).checked = true;
-    }
+//     // Set the question and option based on saved data
+//     // Set the radio button to the saved option if available
+//     if (selectedOption) {
+//         document.querySelector(`input[value="${selectedOption}"]`).checked = true;
+//     }
 
-    return currentQuestion;
-}
+//     return currentQuestion;
+// }
 
 // When the user selects an option, save the progress
 document.querySelectorAll('input[name="option"]').forEach(function (radioButton) {
@@ -173,8 +186,8 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
     });
 });
 
-// Call loadProgress when the page loads
-window.onload = function () {
-    let questionNum = loadProgress();
-    // Load and display the question based on questionNum
-};
+// // Call loadProgress when the page loads
+// window.onload = function () {
+//     let questionNum = loadProgress();
+//     // Load and display the question based on questionNum
+// };
