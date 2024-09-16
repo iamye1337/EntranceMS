@@ -26,7 +26,7 @@ let options = document.querySelectorAll('.options');
 
 
 function questionUpdater() {
-    qnIndicator.innerText = `Question ${questionCounter} of 100`;
+    qnIndicator.innerText = `Question ${questionCounter} of 10`;
     questionNum.innerText = `Question ${questionCounter}`;
     questionObj = JSON.parse(localStorage.getItem(`Question ${questionCounter}`));
     question.innerText = questionObj.Qn;
@@ -65,7 +65,7 @@ prevBtn.addEventListener('click', prev);
 
 
 function next() {
-    if (questionCounter == 100) {
+    if (questionCounter == 10) {
         return;
     }
     questionCounter++;
@@ -86,7 +86,7 @@ let minutes = document.getElementById('minutes');
 let seconds = document.getElementById('seconds');
 
 let currentTime = new Date().getTime();
-const updatedTime = new Date(currentTime + 2 * 60 * 60 * 1000);
+const updatedTime = new Date(currentTime + .5 * 60 * 60 * 1000);
 
 function updateCountdowntime() {
 

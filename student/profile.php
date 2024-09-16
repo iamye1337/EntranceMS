@@ -97,8 +97,13 @@ if ($result->num_rows > 0) {
                 <a href="completionStatus.php" class="w-100" type="submit"><button
                         class="btn btn-lg btn-primary w-100">Take the Test</button></a>
             </div>
+
+            <!-- other buttons -->
+            <div class="row ps-2 pt-3 pe-2" >
+                    <a class="col me-1" href="resultView.php"><button class=" btn btn-lg btn-primary" id="viewResult" >View Result</button></a>
+                    <button class="col btn btn-lg btn-primary" id="logout" >Logout</button>
+            </div>
         </div>
-    </div>
     </div>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
