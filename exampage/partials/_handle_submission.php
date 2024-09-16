@@ -6,7 +6,7 @@ if(isset($_POST)){
     echo $resultData['marks'];
 
     // use $marks to write on database 
-    // echo $resultData['marks'];
+    echo $resultData['marks'];
 
 }
 ?>
