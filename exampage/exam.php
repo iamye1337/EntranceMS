@@ -52,7 +52,7 @@
     <!-- action bar -->
     <div class="d-flex justify-content-between p-2" style="background-color: white; margin-bottom: calc(10vh);">
         <!-- logo -->
-        <img src="images/asarshaLogo.png" style="height: 70px;" alt="">
+        <img src="images/adarshaLogo.png" style="height: 70px;" alt="">
         <!-- question number -->
         <p class="align-self-center fs-5" id="qnIndicator"></p>
         <!-- timer -->

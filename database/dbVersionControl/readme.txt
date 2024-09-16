@@ -32,7 +32,7 @@ now your changes are backed up
     mysql -u root -p <databaseName> < <path to dbVersionControl folder in this repo with filename>
 
     For example
-    mysql -u root -p testdb < C:\xampp\htdocs\EntranceMS\dbVersionControl\myChangedDatabase.sql
+    mysql -u root -p testdb < C:\xampp\htdocs\EntranceMS\database\dbVersionControl\myChangedDatabase.sql
 
 now all the changes are updated!
 
