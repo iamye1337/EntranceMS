@@ -5,7 +5,6 @@ include("../student/login_process.php");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-if (isset($_SESSION['symbolNo'])){
     $symbol = $_SESSION['symbolNo'];
     //query that fetches datas from table
     $sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
@@ -28,7 +27,6 @@ if (isset($_SESSION['symbolNo'])){
         echo "User not found.";
     }
 
-}
 
 ?>
 
