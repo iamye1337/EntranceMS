@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `student`
 --
-CREATE USER 'test'@'localhost' IDENTIFIED WITH caching_sha2_password BY '***';
-GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' WITH GRANT OPTION;
+CREATE USER 'entrance_ms'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'entrance_ms@Mysql123';
+GRANT ALL PRIVILEGES ON *.* TO 'entrance_ms'@'localhost' WITH GRANT OPTION;
 CREATE DATABASE `entrance_ms`;
 CREATE TABLE `entrance_ms`.`student` (
   `SN` int(11) NOT NULL,
