@@ -5,7 +5,7 @@ include "../session_handler.php";
 if (isLoggedIn()) {
     header("Location:profile.php");
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
     $sqlQuery = "SELECT * FROM `examinee_info` WHERE `Symbol_Number` = '{$_POST["symbolNumber"]}'";
     $queryResult = $mysqlConnection->query($sqlQuery);
 
