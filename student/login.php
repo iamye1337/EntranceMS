@@ -6,7 +6,7 @@ if (isLoggedIn()) {
     header("Location:profile.php");
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $sqlQuery = "SELECT * FROM `student` WHERE `Symbol_Number` = '{$_POST["symbolNumber"]}'";
+    $sqlQuery = "SELECT * FROM `examinee_info` WHERE `Symbol_Number` = '{$_POST["symbolNumber"]}'";
     $queryResult = $mysqlConnection->query($sqlQuery);
 
     if ($queryResult->num_rows > 0) {
@@ -17,8 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["userMotherName"] = $queryData["Mothers_Name"];
         $_SESSION["userDateOfBirth"] = $queryData["Date_of_Birth"];
         $_SESSION["userAddress"] = $queryData["Address"];
-        $_SESSION["userContactNumber"]= $queryData["Contact_No"];
+        $_SESSION["userContactNumber"]= $queryData["Contact_Number"];
         $_SESSION["symbolNumber"] = $queryData["Symbol_Number"];
+        $_SESSION["grade"] = $queryData["Grade"];
         $_SESSION["isLoggedIn"] = true;
 
         //close database session
@@ -50,14 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <!----------------------- Main Container -------------------------->
-
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
         <!----------------------- Login Container -------------------------->
-
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
             <!--------------------------- Left Box (image) ----------------------------->
-
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                 style="background: #103cbe;">
                 <div class="featured-image mb-3">
@@ -67,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <!-------------------- ------ Right Box (form) ---------------------------->
-
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
                     <div class="header-text mb-2">
