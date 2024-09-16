@@ -152,3 +152,25 @@ CREATE TABLE `grade_9`.`science` (
   `Option_4` varchar(255) NOT NULL,
   `Correct_Option` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+ALTER TABLE `grade_6`.`english` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_6`.`math` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_6`.`health` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_6`.`science` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+
+ALTER TABLE `grade_7`.`english` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_7`.`math` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_7`.`health` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_7`.`science` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+
+ALTER TABLE `grade_8`.`english` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_8`.`math` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_8`.`health` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_8`.`science` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+
+ALTER TABLE `grade_9`.`english` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_9`.`math` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_9`.`health` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
+ALTER TABLE `grade_9`.`science` CHANGE `Question_ID` `Question_ID` INT(16) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`Question_ID`); 
