@@ -47,7 +47,13 @@ if ($result->num_rows > 0) {
     <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
         <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
+        <form action="logout.php" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+
     </div>
+
+
     <!-- title bar end -->
 
     <!----------------------- Main Container -------------------------->
@@ -81,7 +87,7 @@ if ($result->num_rows > 0) {
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" aria-valuenow="<?php echo $obtMarks; ?>"
                         aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $obtMarks; ?>%;">
-                        <?php echo $obtMarks; ?>%
+                        <?php echo $obtMarks; ?> marks
                     </div>
                 </div>
             </div>

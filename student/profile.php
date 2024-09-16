@@ -5,27 +5,27 @@ include("../student/login_process.php");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-    $symbol = $_SESSION['symbolNo'];
-    //query that fetches datas from table
-    $sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
+$symbol = $_SESSION['symbolNo'];
+//query that fetches datas from table
+$sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
 
-    //execute query
-    $result = $conn->query($sql);
+//execute query
+$result = $conn->query($sql);
 
-    //fetch data
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+//fetch data
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
 
-        // Store user data in variables
-        $name = $row["Name"];
-        $fName = $row["Fathers_Name"];
-        $mName = $row["Mothers_name"];
-        $doB = $row["Date_of_Birth"];
-        $address = $row["Address"];
-        $contactNo = $row["Contact_No"];
-    } else {
-        echo "User not found.";
-    }
+    // Store user data in variables
+    $name = $row["Name"];
+    $fName = $row["Fathers_Name"];
+    $mName = $row["Mothers_name"];
+    $doB = $row["Date_of_Birth"];
+    $address = $row["Address"];
+    $contactNo = $row["Contact_No"];
+} else {
+    echo "User not found.";
+}
 
 
 ?>
@@ -44,6 +44,7 @@ if (!$conn) {
 </head>
 
 <body>
+
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <!----------------------- Question Container -------------------------->
@@ -172,8 +173,7 @@ if (!$conn) {
 
             </ul>
         </ul>
-    </aside>
-
+    </aside> 
 </body>
 
 </html>
