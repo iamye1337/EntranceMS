@@ -11,7 +11,7 @@ if(isset($_POST)){
 
     //execute query
     $result = $conn->query(query: $sql);  
-    echo $result; 
+    echo $marks; 
 
 
 }

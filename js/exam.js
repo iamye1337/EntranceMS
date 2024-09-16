@@ -44,18 +44,18 @@ questionUpdater();
 
 
 function optionsCreator() {
-    Array.from(options).forEach((element) => {
-        if (element.classList.contains("correct")) {
-            element.classList.remove('correct');
-        }
-    });
+    // Array.from(options).forEach((element) => {
+    //         element.classList.remove('correct');
+    //     }if (element.classList.contains("correct")) {
+        
+    // });
 
     Array.from(options).forEach((element, index) => {
         element.innerText = questionObj.options[`option${index + 1}`];
-        if (element.innerText.includes("#$")) {
-            element.innerText = element.innerText.slice(0, element.innerText.length - 2);
-            element.classList.add('correct');
-        }
+        // if (element.innerText.includes("#$")) {
+        //     element.innerText = element.innerText.slice(0, element.innerText.length - 2);
+        //     element.classList.add('correct');
+        // }
     });
 
     const storedValue = localStorage.getItem(`qid${questionCounter}`);
@@ -77,30 +77,34 @@ nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
 
+function sendMarks(){
+    // Number to be sent to the server
+    let resultData = {
+        "marks": correctedProgress.length
+    }
+
+
+
+    fetch('/entrancems/exampage/partials/_handle_submission.php', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": JSON.stringify(resultData)
+    })
+        .then(response => response.text())
+        .then(result => {
+            console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+}
+
 function submit() {
     if (confirm("are you sure?")) {
-        // Number to be sent to the server
-        let resultData = {
-            "marks": correctedProgress.length
-        }
-
-
-
-        fetch('/entrancems/exampage/partials/_handle_submission.php', {
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            "body": JSON.stringify(resultData)
-        })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Success:', result);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
+        sendMarks();
         // console.log("pressed confirm");
     }
     else {
@@ -243,3 +247,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+// auto submit
+setTimeout(sendMarks,.5 * 60 * 60 * 1000);
