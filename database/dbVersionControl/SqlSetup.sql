@@ -2,7 +2,10 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE TABLE `grade_6` (
+CREATE DATABASE `entrance_ms`;
+
+
+CREATE TABLE `entrance_ms`.`grade_6` (
   `Question_ID` int(16) NOT NULL,
   `Subject_Name` varchar(255) NOT NULL,
   `Question_Title` text NOT NULL,
@@ -115,7 +118,7 @@ INSERT INTO `grade_6` (`Question_ID`, `Subject_Name`, `Question_Title`, `Option_
 (100, 'Math', 'Question of Math', 'Option 1', 'Option 2', 'Option 3', 'Option 4', 3);
 
 
-CREATE TABLE `grade_7` (
+CREATE TABLE `entrance_ms`.`grade_7` (
   `Question_ID` int(16) NOT NULL,
   `Subject_Name` varchar(255) NOT NULL,
   `Question_Title` text NOT NULL,
@@ -228,7 +231,7 @@ INSERT INTO `grade_7` (`Question_ID`, `Subject_Name`, `Question_Title`, `Option_
 (100, 'Math', 'Question of Math', 'Option 1', 'Option 2', 'Option 3', 'Option 4', 4);
 
 
-CREATE TABLE `grade_8` (
+CREATE TABLE `entrance_ms`.`grade_8` (
   `Question_ID` int(16) NOT NULL,
   `Subject_Name` varchar(255) NOT NULL,
   `Question_Title` text NOT NULL,
@@ -341,7 +344,7 @@ INSERT INTO `grade_8` (`Question_ID`, `Subject_Name`, `Question_Title`, `Option_
 (100, 'Math', 'Question of Math', 'Option 1', 'Option 2', 'Option 3', 'Option 4', 2);
 
 
-CREATE TABLE `grade_9` (
+CREATE TABLE `entrance_ms`.`grade_9` (
   `Question_ID` int(16) NOT NULL,
   `Subject_Name` varchar(255) NOT NULL,
   `Question_Title` text NOT NULL,
@@ -454,7 +457,7 @@ INSERT INTO `grade_9` (`Question_ID`, `Subject_Name`, `Question_Title`, `Option_
 (100, 'Math', 'Question of Math', 'Option 1', 'Option 2', 'Option 3', 'Option 4', 3);
 
 
-CREATE TABLE `session_tracker` (
+CREATE TABLE `entrance_ms`.`session_tracker` (
   `Session_ID` varchar(32) NOT NULL,
   `Symbol_Number` varchar(10) NOT NULL,
   `Completed_Examination` tinyint(1) NOT NULL,
@@ -463,7 +466,7 @@ CREATE TABLE `session_tracker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `student` (
+CREATE TABLE `entrance_ms`.`student` (
   `SN` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Symbol_Number` varchar(50) NOT NULL,
