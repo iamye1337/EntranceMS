@@ -1,6 +1,6 @@
 <?php
 $serverName = "localhost";
-$userName = "localhost";
+$userName = "root";
 $password = "";
 $databaseName = "entrance_ms";
 
