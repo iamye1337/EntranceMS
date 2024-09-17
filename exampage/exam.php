@@ -57,7 +57,6 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
 </head>
 
 <body>
-
     <!-- Modal -->
     <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -86,32 +85,33 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
 
     <!-- action bar -->
-    <div class="row text-center d-flex justify-content-between w-100" style="background-color: white; margin-bottom: calc(10vh);">
-        <!-- logo -->
-        <img class="col pt-2 ps-4 pb-2" src="../images/adarshaLogo.png" style="max-width: 6%;" alt="">
-        <!-- question number -->
-        <p class="align-self-center fs-5 col" id="qnIndicator"></p>
-        <!-- timer -->
-        <p class="align-self-center fs-5 col" id="timer">
-            Timer:
-            <small id="hours"></small>:
-            <small id="minutes"></small>:
-            <small id="seconds"></small>
-        </p>
-      
-<!-- this is new design -->
-        <div class="qst_status text-center col fs-5">
-            <div class="row  align-items-center justify-content-center pt-4">
-                <div class="student-attempt col col">Attempted : <span id="attempted-qn">0/ 100</span></div>/
-                <div class="student-unattempt col col">Unanswered : <span id="unattempted-qn">0</span></div>
+    <div class="navbar navbar-expand-lg mb-5 fs-5">
+        <div class="container-fluid">
+            <!-- logo -->
+            <div class="navbar-brand" href="#">
+                <img src="../images/adarshaLogo.png" height="70" alt="">
             </div>
+            <!-- question number -->
+            <p class="nav-item" id="qnIndicator"></p>
+            <!-- timer -->
+            <p class="nav-item" id="timer">
+                Timer:
+                <small id="hours"></small>:
+                <small id="minutes"></small>:
+                <small id="seconds"></small>
+            </p>
 
-        </div>
-        <!-- buttons -->
-        <div class="align-self-center col">
-            <div class="row fs-4">
-                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="prev" style="width: 200px;">Previous</button>
-                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="next" style="width: 200px;">Next</button>
+            <!-- this is new design -->
+            <div class="qst_status d-flex">
+                <div class="student-attempt">Attempted : <span id="attempted-qn">0/ 100</span></div>/
+                <div class="student-unattempt">Unanswered : <span id="unattempted-qn">0</span></div>
+
+            </div>
+            <!-- buttons -->
+            <div class="d-flex">
+                <button class="btn btn-primary px-5 me-3" id="prev"
+                    >Previous</button>
+                <button class="btn btn-primary px-5" id="next">Next</button>
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
         <?php
-        echo "{".PHP_EOL;
+        echo "{" . PHP_EOL;
 
         for ($i = 0; $i < (count($questionBank) - 1); $i++) {
             $questionNumber = $i + 1;
@@ -211,10 +211,10 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
     </div>
     <script>
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             return "Data will be lost if you leave the page, are you sure?";
         };
-        </script>
+    </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
 </body>
