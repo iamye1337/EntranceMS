@@ -1,3 +1,49 @@
+<?php
+include "../session_handler.php";
+include "../database/connectdb.php";
+
+if (!isLoggedIn()) {
+    header("Location:../student/login.php");
+}
+
+$questionAmount = [
+    "6" => [
+        ["English", 40],
+        ["Math", 20],
+        ["Science", 20],
+        ["Health", 20]
+    ],
+    "7" => [
+        ["English", 40],
+        ["Math", 20],
+        ["Science", 20],
+        ["Health", 20]
+    ],
+    "8" => [
+        ["English", 40],
+        ["Math", 20],
+        ["Science", 20],
+        ["Health", 20]
+    ],
+    "9" => [
+        ["English", 40],
+        ["Math", 20],
+        ["Science", 20],
+        ["Health", 20]
+    ]
+];
+$examineeGrade = $_SESSION["grade"];
+$questionBank = [];
+for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
+    $sqlQuery = <<<Query
+    SELECT * FROM `grade_$examineeGrade`.`{$questionAmount[$examineeGrade][$i][0]}` ORDER BY RAND() LIMIT {$questionAmount[$examineeGrade][$i][1]};
+    Query;
+    $queryResult = $mysqlConnection->query($sqlQuery);
+    $queryData = $queryResult->fetch_all();
+    $questionBank = array_merge($questionBank, $queryData);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,6 +90,29 @@
 </head>
 
 <body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="submissionModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="modal-submit-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- title bar -->
     <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
         <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
@@ -62,17 +131,21 @@
             <small id="minutes"></small>:
             <small id="seconds"></small>
         </p>
+<!-- this is previous design -->
         <!-- <div class="qst_status col" style="background-color: green;">
             <div class="student-progress col">
                 <div class="student-attempt col">Attempted :<span id="attempted-qn">0/ 100</span></div>
                 <div class="student-unattempt col">Unanswered :<span id="unattempted-qn">0</span></div>
             </div>
         </div> -->
+      
+<!-- this is new design -->
         <div class="qst_status text-center col fs-5">
             <div class="row  align-items-center justify-content-center pt-4">
                 <div class="student-attempt col col">Attempted : <span id="attempted-qn">0/ 100</span></div>/
                 <div class="student-unattempt col col">Unanswered : <span id="unattempted-qn">0</span></div>
             </div>
+
         </div>
         <!-- buttons -->
         <div class="align-self-center col">
@@ -85,106 +158,53 @@
 
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
-        {
-        "Question 1":{
-        "Qn": "How many seconds are present in a day?",
-        "options":{
-        "option1": "86400",
-        "option2": "83239",
-        "option3": "64000",
-        "option4": "55555",
-        "correctOption": "option1"
+        <?php
+        echo "{".PHP_EOL;
+
+        for ($i = 0; $i < (count($questionBank) - 1); $i++) {
+            $questionNumber = $i + 1;
+            $questionTitle = $questionBank[$i][1];
+            $option1 = $questionBank[$i][2];
+            $option2 = $questionBank[$i][3];
+            $option3 = $questionBank[$i][4];
+            $option4 = $questionBank[$i][5];
+            $correctAnswer = $questionBank[$i][6];
+
+            echo <<<Question
+                "Question $questionNumber": {
+                    "Qn": "$questionTitle",
+                    "options": {
+                        "option1": "$option1",
+                        "option2": "$option2",
+                        "option3": "$option3",
+                        "option4": "$option4",
+                        "correctOption": "$correctAnswer"
+                    }
+                },
+            Question;
         }
-        },
-        "Question 2":{
-        "Qn": "which planet is closest to the sun?",
-        "options":{
-        "option1": "Mercury",
-        "option2": "Venus",
-        "option3": "Mars",
-        "option4": "Uranus",
-        "correctOption": "option1"
-        }
-        },
-        "Question 3":{
-        "Qn": "which planet is c to the earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Ves",
-        "option3": "Mars",
-        "option4": "Uranus"
-        }
-        },
-        "Question 4":{
-        "Qn": "which planet is closest to t",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Venus",
-        "option3": "Mars",
-        "option4": "Uranus"
-        }
-        },
-        "Question 5":{
-        "Qn": "which planet ishe earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Vnus",
-        "option3": "Mars",
-        "option4": "Uranus"
-        }
-        },
-        "Question 6":{
-        "Qn": "w is closest to the earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Veus",
-        "option3": "Ms",
-        "option4": "Uranus"
-        }
-        },
-        "Question 7":{
-        "Qn": "which planeto the earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Venus",
-        "option3": "Mars",
-        "option4": "Uranus"
-        }
-        },
-        "Question 8":{
-        "Qn": "which planet is closest trth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Vnus",
-        "option3": "Mars",
-        "option4": "Uanus"
-        }
-        },
-        "Question 9":{
-        "Qn": "which plosest to the earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Vnus",
-        "option3": "Mrs",
-        "option4": "Uranus"
-        }
-        },
-        "Question 10":{
-        "Qn": "which planet is earth?",
-        "options":{
-        "option1": "Mercury#$",
-        "option2": "Venus",
-        "option3": "Mars",
-        "option4": "Uranus"
-        }
-        }
-        }
-        <!-- php code to fetch the -->
-        <!-- json format must be used! -->
-        <!--          
-         Note that right option must be labelled with #$ at the end. This process must be done when storing answers in database which is done using the code "not manually"
-        
-          -->
+        $lastQuestionIndex = count($questionBank) - 1;
+        $questionNumber = $lastQuestionIndex + 1;
+        $questionTitle = $questionBank[$lastQuestionIndex][1];
+        $option1 = $questionBank[$lastQuestionIndex][2];
+        $option2 = $questionBank[$lastQuestionIndex][3];
+        $option3 = $questionBank[$lastQuestionIndex][4];
+        $option4 = $questionBank[$lastQuestionIndex][5];
+        $correctAnswer = $questionBank[$i][6];
+        echo <<<LastQuestion
+           "Question $questionNumber": {
+                    "Qn": "$questionTitle",
+                    "options": {
+                        "option1": "$option1",
+                        "option2": "$option2",
+                        "option3": "$option3",
+                        "option4": "$option4",
+                        "correctOption": "$correctAnswer"
+                    }
+            }
+        LastQuestion;
+        echo "}";
+        ?>
     </div>
 
     <!----------------------- Main Container -------------------------->
@@ -371,9 +391,10 @@
     </div>
     </div>
     <script>
-        // window.onbeforeunload = function () {
-        //     return "Data will be lost if you leave the page, are you sure?";
-        // };
+        window.onbeforeunload = function() {
+            return "Data will be lost if you leave the page, are you sure?";
+        };
+
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>

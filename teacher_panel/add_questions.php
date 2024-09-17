@@ -1,22 +1,33 @@
 <?php
 include("../database/connectdb.php");
 
-//SQL for creating table in database (same table properties for grade 6,7,8,9)
+if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
+  $grade = $_POST["grade"];
+  $subject = $_POST["subject"];
+  $question = $_POST["question"];
+  $option1 = $_POST["option1"];
+  $option2 = $_POST["option2"];
+  $option3 = $_POST["option3"];
+  $option4 = $_POST["option4"];
+  $correctOption = $_POST["correctOption"];
+  $sqlQuery = <<<Query
+  INSERT INTO `grade_$grade`.`$subject`(`Question_ID`, `Question_Title`, `Option_1`, `Option_2`, `Option_3`, `Option_4`, `Correct_Option`) VALUES (NULL,'$question','$option1','$option2','$option3','$option4', $correctOption);
+  Query;
 
-//for creating grade-6 table, change below SQL grade$ -> grade6 and similar for 7,8,9
-//                                                |
-//                                                |
-// CREATE TABLE grade$ (           <-------------
-// 	   qid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//     subject VARCHAR(255),
-//     queTitle VARCHAR(400),
-//     option1 VARCHAR(255),
-//     option2 VARCHAR(255),
-//     option3 VARCHAR(255),
-//     option4 VARCHAR(255),
-//     correctOption VARCHAR(255)
-// )
 
+  $queryResult = $mysqlConnection->query($sqlQuery);
+   // Success alert
+  if ($queryResult) { 
+
+    echo <<<Alert
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Success!</strong> Question has been added to $subject grade $grade
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    Alert;
+  }
+  
+}
 ?>
 
 <!doctype html>
@@ -80,37 +91,33 @@ include("../database/connectdb.php");
     </div>
 
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Get the selected grade
-      $grade = $_POST['grade'];
+    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //   // Get the selected grade
+    //   $grade = $_POST['grade'];
 
-      // Validate if a grade is selected
-      if (!in_array($grade, ['6', '7', '8', '9'])) {
-        echo '<div class="alert alert-danger" role="alert">Invalid grade selected.</div>';
-        exit;
-      }
+    //   // Validate if a grade is selected
+    //   if (!in_array($grade, ['6', '7', '8', '9'])) {
+    //     echo '<div class="alert alert-danger" role="alert">Invalid grade selected.</div>';
+    //     exit;
+    //   }
 
-      $subject = ucfirst($_POST['subject']);
-      $que = ucfirst($_POST['que']);
-      $option1 = $_POST['option1'];
-      $option2 = $_POST['option2'];
-      $option3 = $_POST['option3'];
-      $option4 = $_POST['option4'];
-      $correctOption = $_POST['correctOption'];
+    //   $subject = ucfirst($_POST['subject']);
+    //   $que = ucfirst($_POST['que']);
+    //   $option1 = $_POST['option1'];
+    //   $option2 = $_POST['option2'];
+    //   $option3 = $_POST['option3'];
+    //   $option4 = $_POST['option4'];
+    //   $correctOption = $_POST['correctOption'];
 
-      // Define table name dynamically
-      $table = "grade" . $grade;
+    //   // Define table name dynamically
+    //   $table = "grade" . $grade;
 
-      // Prepare and execute SQL query for the dynamic table
-      $sql = "INSERT INTO `$table`( `subject`, `queTitle`, `option1`, `option2`, `option3`, `option4`, `correctOption`) VALUES (?,?,?,?,?,?,?)";
-      $stmt = $con->prepare($sql);
-      $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
+    //   // Prepare and execute SQL query for the dynamic table
+    //   $sql = "INSERT INTO `$table`( `subject`, `queTitle`, `option1`, `option2`, `option3`, `option4`, `correctOption`) VALUES (?,?,?,?,?,?,?)";
+    //   $stmt = $con->prepare($sql);
+    //   $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
 
-      // Success alert
-      echo '<div class="alert alert-success" role="alert">
-          Question added successfully to Grade ' . $grade . '.
-      </div>';
-    }
+     
     ?>
 
     <div>
@@ -137,7 +144,9 @@ include("../database/connectdb.php");
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+
+
+            <form action="<?= htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
               <!-- Grade selection -->
               <div class="mb-3 row">
                 <label for="grade" class="col-sm-2 col-form-label">Grade<sup><b>*</b></sup>:</label>
@@ -174,7 +183,7 @@ include("../database/connectdb.php");
               <div class="mb-3 row">
                 <label for="que" class="col-sm-2 col-form-label">Question<sup><b>*</b></sup>:</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="que" required>
+                  <input type="text" class="form-control" name="question" required>
                 </div>
               </div>
 
@@ -211,10 +220,10 @@ include("../database/connectdb.php");
                   <div class="col-md-3">
                     <select class="form-select" name="correctOption" required>
                       <option selected disabled value="">Choose correct option...</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                      <option value="option4">Option 4</option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                      <option value="4">Option 4</option>
                     </select>
                   </div>
                 </div>
@@ -226,6 +235,8 @@ include("../database/connectdb.php");
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
+
+
           </div>
         </div>
       </div>

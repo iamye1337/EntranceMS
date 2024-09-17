@@ -55,7 +55,7 @@
             <table id="questions" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>S.N.</th>
+                        <th>Question ID</th>
                         <th>Question</th>
                         <th>Subject</th>
                         <th>Class</th>

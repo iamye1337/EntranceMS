@@ -1,6 +1,6 @@
 localStorage.clear();
 let questionCounter = 1;
-let totalQuestions = 10;
+let totalQuestions = 100;
 
 
 // attempted and unanswered qns
@@ -120,17 +120,18 @@ function sendMarks(){
             console.error('Error:', error);
         });
 
+        window.location.replace("submitted.html");
+    
+
 }
 
+// handle submit
+let submissionModal = new bootstrap.Modal('#submissionModal');
+let modalSubmitBtn= document.getElementById('modal-submit-btn');
+modalSubmitBtn.addEventListener('click',sendMarks);
 function submit() {
-    if (confirm("are you sure?")) {
-        sendMarks();
-        // console.log("pressed confirm");
-    }
-    else {
-        console.log("canceled");
-    }
-    window.location.replace("submitted.html");
+    document.querySelector('.modal-body').innerHTML=`Are you sure you want to submit? <br> You have answered ${attempted.innerText} out of ${totalQuestions}`;
+    submissionModal.show();
 }
 
 // next to submit button 
