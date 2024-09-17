@@ -394,7 +394,6 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
         window.onbeforeunload = function() {
             return "Data will be lost if you leave the page, are you sure?";
         };
-
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
