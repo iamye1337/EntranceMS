@@ -1,24 +1,24 @@
 localStorage.clear();
 let questionCounter = 1;
-let totalQuestions = 100;
-
+let totalQuestions = 10;
+let attemptedQuestions = 0;
 
 // attempted and unanswered qns
-let attempted=document.getElementById('attempted-qn');
-let unanswered=document.getElementById('unattempted-qn');
-attempted.innerText='0';
-unanswered.innerText=totalQuestions;
+let attempted = document.getElementById('attempted-qn');
+let unanswered = document.getElementById('unattempted-qn');
+attempted.innerText = '0';
+unanswered.innerText = totalQuestions;
 
-let attemptedQnTracker=[];
-function updateAttemptedQn(questionNum){
-     if (!attemptedQnTracker.includes(questionNum)) {
+let attemptedQnTracker = [];
+function updateAttemptedQn(questionNum) {
+    if (!attemptedQnTracker.includes(questionNum)) {
         attemptedQnTracker.push(questionNum);
     }
-    attempted.innerText=attemptedQnTracker.length;
+    attempted.innerText = attemptedQnTracker.length;
 }
 
-function updateUnansweredQn(){
-    unanswered.innerText=totalQuestions -  attemptedQnTracker.length;
+function updateUnansweredQn() {
+    unanswered.innerText = totalQuestions - attemptedQnTracker.length;
 }
 
 
@@ -67,7 +67,7 @@ function optionsCreator() {
     // Array.from(options).forEach((element) => {
     //         element.classList.remove('correct');
     //     }if (element.classList.contains("correct")) {
-        
+
     // });
 
     Array.from(options).forEach((element, index) => {
@@ -97,7 +97,7 @@ nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
 
-function sendMarks(){
+function sendMarks() {
     // Number to be sent to the server
     let resultData = {
         "marks": correctedProgress.length
@@ -120,17 +120,17 @@ function sendMarks(){
             console.error('Error:', error);
         });
 
-        window.location.replace("submitted.html");
-    
+    window.location.replace("submitted.html");
+
 
 }
 
 // handle submit
 let submissionModal = new bootstrap.Modal('#submissionModal');
-let modalSubmitBtn= document.getElementById('modal-submit-btn');
-modalSubmitBtn.addEventListener('click',sendMarks);
+let modalSubmitBtn = document.getElementById('modal-submit-btn');
+modalSubmitBtn.addEventListener('click', sendMarks);
 function submit() {
-    document.querySelector('.modal-body').innerHTML=`Are you sure you want to submit? <br> You have answered ${attempted.innerText} out of ${totalQuestions}`;
+    document.querySelector('.modal-body').innerHTML = `Are you sure you want to submit? <br> You have answered ${attempted.innerText} out of ${totalQuestions}`;
     submissionModal.show();
 }
 
@@ -201,44 +201,38 @@ setInterval(updateCountdowntime, 1000); // 1seconds
 let correctedProgress = [];
 // Save the current question number in localStorage
 function saveProgress(questionNum, selectedOption) {
-
+// console.log(questionObj.options.correctOption); //working
     // localStorage.setItem('currentQuestion', questionNum);
 
     localStorage.setItem('qid' + questionNum, selectedOption);
 
-    if (questionObj.options.correctOption == 'option' + selectedOption) {
+    if (questionObj.options.correctOption == selectedOption) {
         correctedProgress.push('qid' + questionNum);
+        console.log("here")
         // no need to store in local storage acutally
         // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
     }
     else {
+        // console.log("nowhere")
+
         if (correctedProgress.includes('qid' + questionNum)) {
+        // console.log("there")
+
             correctedProgress.pop('qid' + questionNum);
             // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
         }
     }
 }
 
-// // Load the saved progress from localStorage
-// function loadProgress() {
-//     let currentQuestion = localStorage.getItem('currentQuestion') || 1;
-//     let selectedOption = localStorage.getItem('qid' + currentQuestion);
-
-//     // Set the question and option based on saved data
-//     // Set the radio button to the saved option if available
-//     if (selectedOption) {
-//         document.querySelector(`input[value="${selectedOption}"]`).checked = true;
-//     }
-
-//     return currentQuestion;
-// }
-
+const attemptedCountDisplay = document.getElementById('attempted-qn');
 // When the user selects an option, save the progress
 document.querySelectorAll('input[name="option"]').forEach(function (radioButton) {
     radioButton.addEventListener('change', function () {
         let selectedOption = this.value;
         // let currentQuestion = document.getElementById('qn number').value;
         let currentQuestion = questionCounter;
+        attemptedQuestions++;
+        attemptedCountDisplay.textContent = attemptedQuestions;
         saveProgress(currentQuestion, selectedOption);
         updateAttemptedQn(currentQuestion);
         updateUnansweredQn();
@@ -246,68 +240,56 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 });
 
 
-// // Call loadProgress when the page loads
-// window.onload = function () {
-//     let questionNum = loadProgress();
-//     // Load and display the question based on questionNum
-// };
+// NOT NEEDED??
 
+// //make submit button visible when user gets pass 80 questions
+// document.addEventListener('DOMContentLoaded', function () {
+//     const form = document.getElementById('examForm');
+//     const submitBtn = document.getElementById('submitBtn');
 
-
-
-// // Call loadProgress when the page loads
-// window.onload = function () {
-//     let questionNum = loadProgress();
-//     // Load and display the question based on questionNum
-// };
-
-
-//make submit button visible when user gets pass 80 questions
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('examForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    // Add event listener for all input fields in the form
-    form.addEventListener('input', function () {
-        const answered = countAnsweredQuestions();
-        if (answered >= 80) {
-            // Show the submit button when 80 questions are answered
-            submitBtn.style.display = 'block';
-        } else {
-            // Hide the submit button if less than 80 questions are answered
-            submitBtn.style.display = 'none';
-        }
-    });
-});
+//     // Add event listener for all input fields in the form
+//     form.addEventListener('input', function () {
+//         const answered = countAnsweredQuestions();
+//         if (answered >= 80) {
+//             // Show the submit button when 80 questions are answered
+//             submitBtn.style.display = 'block';
+//         } else {
+//             // Hide the submit button if less than 80 questions are answered
+//             submitBtn.style.display = 'none';
+//         }
+//     });
+// });
 
 
 // auto submit
-setTimeout(sendMarks,.5 * 60 * 60 * 1000);
+setTimeout(sendMarks, .5 * 60 * 60 * 1000);
 
 let submitStr = document.getElementById('next').textContent;
-        if (submitStr !== "Submit"){
+if (submitStr !== "Submit") {
     window.onbeforeunload = function () {
         return "Data will be lost if you leave the page, are you sure?";
     };
 }
 
 // making the attempted questions work 
-let attemptedQuestions = 0;
-const nextButton = document.getElementById('next');
-const attemptedCountDisplay = document.getElementById('attempted-count');
-const exampage = document.getElementById('question-form');
+// let attemptedQuestions = 0;
+// const nextButton = document.getElementById('next');
+// const attemptedCountDisplay = document.getElementById('attempted-qn');
+// const exampage = document.getElementById('question-form');
 
-// Event listener for the "Next" button
-nextButton.addEventListener('click', function () {
-    // Check if one of the radio buttons is selected
-    const selectedOption = exampage.querySelector('input[type="radio"]:checked');
+// // Event listener for the "Next" button
+// nextButton.addEventListener('click', function () {
+//     // Check if one of the radio buttons is selected
+//     const selectedOption = exampage.querySelector('input[type="radio"]:checked');
 
-    if (selectedOption) {
-        attemptedQuestions++;  // Increment attempted question count
-        attemptedCountDisplay.textContent = attemptedQuestions; // Update the display
+//     if (selectedOption) {
+//         attemptedQuestions++;  // Increment attempted question count
+//         attemptedCountDisplay.textContent = attemptedQuestions; // Update the display
 
-        // Clear the selected option for the next question
-        exampage.reset();
+//         // Clear the selected option for the next question
+//         // exampage.reset();
 
-    }
-});
+//     }
+// });
+
+// another method for making attempted questions work is in line 234
