@@ -1,13 +1,33 @@
 localStorage.clear();
 let questionCounter = 1;
-let totalQuestions = 10;
+let totalQuestions = 100;
+
+
+// attempted and unanswered qns
+let attempted=document.getElementById('attempted-qn');
+let unanswered=document.getElementById('unattempted-qn');
+attempted.innerText='0';
+unanswered.innerText=totalQuestions;
+
+let attemptedQnTracker=[];
+function updateAttemptedQn(questionNum){
+     if (!attemptedQnTracker.includes(questionNum)) {
+        attemptedQnTracker.push(questionNum);
+    }
+    attempted.innerText=attemptedQnTracker.length;
+}
+
+function updateUnansweredQn(){
+    unanswered.innerText=totalQuestions -  attemptedQnTracker.length;
+}
+
 
 
 
 // this is fetching question from exam.php
 
 // fetching question and converting to json format
-let jsonQuestion = document.getElementById('question container').innerText;
+let jsonQuestion = document.getElementById('question-container').innerText;
 jsonQuestion = JSON.parse(jsonQuestion);
 // console.log(jsonQuestion);
 
@@ -44,18 +64,18 @@ questionUpdater();
 
 
 function optionsCreator() {
-    Array.from(options).forEach((element) => {
-        if (element.classList.contains("correct")) {
-            element.classList.remove('correct');
-        }
-    });
+    // Array.from(options).forEach((element) => {
+    //         element.classList.remove('correct');
+    //     }if (element.classList.contains("correct")) {
+        
+    // });
 
     Array.from(options).forEach((element, index) => {
         element.innerText = questionObj.options[`option${index + 1}`];
-        if (element.innerText.includes("#$")) {
-            element.innerText = element.innerText.slice(0, element.innerText.length - 2);
-            element.classList.add('correct');
-        }
+        // if (element.innerText.includes("#$")) {
+        //     element.innerText = element.innerText.slice(0, element.innerText.length - 2);
+        //     element.classList.add('correct');
+        // }
     });
 
     const storedValue = localStorage.getItem(`qid${questionCounter}`);
@@ -77,35 +97,41 @@ nextBtn.addEventListener('click', next);
 prevBtn.addEventListener('click', prev);
 
 
-function submit() {
-    if (confirm("are you sure?")) {
-        // Number to be sent to the server
-        let resultData = {
-            "marks": correctedProgress.length
-        }
+function sendMarks(){
+    // Number to be sent to the server
+    let resultData = {
+        "marks": correctedProgress.length
+    }
 
 
 
-        fetch('/entrancems/exampage/partials/_handle_submission.php', {
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            "body": JSON.stringify(resultData)
+    fetch('/entrancems/exampage/partials/_handle_submission.php', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": JSON.stringify(resultData)
+    })
+        .then(response => response.text())
+        .then(result => {
+            console.log('Success:', result);
         })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Success:', result);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
-        // console.log("pressed confirm");
-    }
-    else {
-        console.log("canceled");
-    }
+        window.location.replace("submitted.html");
+    
+
+}
+
+// handle submit
+let submissionModal = new bootstrap.Modal('#submissionModal');
+let modalSubmitBtn= document.getElementById('modal-submit-btn');
+modalSubmitBtn.addEventListener('click',sendMarks);
+function submit() {
+    document.querySelector('.modal-body').innerHTML=`Are you sure you want to submit? <br> You have answered ${attempted.innerText} out of ${totalQuestions}`;
+    submissionModal.show();
 }
 
 // next to submit button 
@@ -214,8 +240,19 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
         // let currentQuestion = document.getElementById('qn number').value;
         let currentQuestion = questionCounter;
         saveProgress(currentQuestion, selectedOption);
+        updateAttemptedQn(currentQuestion);
+        updateUnansweredQn();
     });
 });
+
+
+// // Call loadProgress when the page loads
+// window.onload = function () {
+//     let questionNum = loadProgress();
+//     // Load and display the question based on questionNum
+// };
+
+
 
 
 // Call loadProgress when the page loads
@@ -243,3 +280,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+// auto submit
+setTimeout(sendMarks,.5 * 60 * 60 * 1000);
+
+let submitStr = document.getElementById('next').textContent;
+        if (submitStr !== "Submit"){
+    window.onbeforeunload = function () {
+        return "Data will be lost if you leave the page, are you sure?";
+    };
+}
+
+// making the attempted questions work 
+let attemptedQuestions = 0;
+const nextButton = document.getElementById('next');
+const attemptedCountDisplay = document.getElementById('attempted-count');
+const exampage = document.getElementById('question-form');
+
+// Event listener for the "Next" button
+nextButton.addEventListener('click', function () {
+    // Check if one of the radio buttons is selected
+    const selectedOption = exampage.querySelector('input[type="radio"]:checked');
+
+    if (selectedOption) {
+        attemptedQuestions++;  // Increment attempted question count
+        attemptedCountDisplay.textContent = attemptedQuestions; // Update the display
+
+        // Clear the selected option for the next question
+        exampage.reset();
+
+    }
+});

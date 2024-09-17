@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "../session_handler.php";
 include "../database/connectdb.php";
 
 //query that fetches datas from table
