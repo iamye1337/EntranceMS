@@ -36,3 +36,6 @@ body{
 .right-box{
     padding: 40px 30px 40px 40px
 }
+sup {
+    color: rgb(255, 0, 0);
+  }

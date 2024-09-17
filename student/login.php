@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
         $_SESSION["userMotherName"] = $queryData["Mothers_Name"];
         $_SESSION["userDateOfBirth"] = $queryData["Date_of_Birth"];
         $_SESSION["userAddress"] = $queryData["Address"];
-        $_SESSION["userContactNumber"]= $queryData["Contact_Number"];
+        $_SESSION["userContactNumber"] = $queryData["Contact_Number"];
         $_SESSION["userExamCompletionStatus"] = $queryData["Exam_Completion_Status"];
         $_SESSION["testTakenDate"] = $queryData["Examination_Date"];
         $_SESSION["marksObtained"] = $queryData["Result"];
@@ -52,15 +52,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
 </head>
 
 <body>
-<!-- title bar -->
-<div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-        <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+    <!-- title bar -->
+    <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
+        <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
     </div>
- <!-- action bar -->
- <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
+    <!-- action bar -->
+    <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
-        <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
-</div>
+        <img src="../images/adarshaLogo.png" style="height: 40px;" alt="">
+    </div>
 
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center pt-5">

@@ -30,33 +30,39 @@ $queryResult = $mysqlConnection->query($sqlQuery);
 <body>
     <!-- title bar -->
     <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-        <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+        <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
     </div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="../images/adarshaLogo.png" alt="Logo" width="auto" height="70px"
+                <img src="../images/adarshaLogo.png" alt="Logo" width="auto" height="40px"
                     class="d-inline-block align-text-top"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active fs-4" aria-current="page" href="teach_home.php">Home</a>
+                        <a class="nav-link active fs-6" aria-current="page" href="teach_home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="add_questions.php">Add Questions</a>
+                        <a class="nav-link fs-6" href="add_students.php">Add Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-4" href="add_students.php">Add Students</a>
+                        <a class="nav-link fs-6" href="add_questions.php">Add Questions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
+                        <a class="nav-link fs-6" href="QnView.php">View Questions</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success fs-4" type="submit">Search</button>
-                </form>
+
+                <!-- Right-aligned Login Button -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="teach_login.php" type="button" class="btn btn-light">
+                            <img src="../images/profpic.png" alt="" width="20"> Log Out
+                        </a>
+                    </li>
+                </ul>
             </div>
+
         </div>
     </nav>
 
@@ -65,10 +71,10 @@ $queryResult = $mysqlConnection->query($sqlQuery);
 
         <!----------------------- Container -------------------------->
 
-        <div class="row box-container box-area">
+        <div class="row box-container box-area ">
 
             <!-------------------------- (form) ---------------------------->
-            <table id="questions" class="display" style="width:100%">
+            <table id="questions" class="display table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>SN</th>
@@ -82,7 +88,7 @@ $queryResult = $mysqlConnection->query($sqlQuery);
                         <th>Completion Status</th>
                         <th>Exam Date</th>
                         <th>Grade</th>
-                        <th>Result</t>
+                        <th>Result</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,12 +122,12 @@ $queryResult = $mysqlConnection->query($sqlQuery);
                     $mysqlConnection->close();
                     ?>
 
-                    </tbody>
+                </tbody>
 
-                </table>
-            </div>
-
+            </table>
         </div>
+
+    </div>
     </div>
 </body>
 <script defer src="../bootstrap/js/bootstrap.bundle.min.js"></script>

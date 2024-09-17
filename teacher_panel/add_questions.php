@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     </div>
     Alert;
   }
-
 }
 ?>
 
@@ -41,70 +40,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-</head>
+    <link rel="stylesheet" href="../style.css">
 
-<!-- css  -->
-<style>
-  sup {
-    color: red;
-  }
-</style>
+</head>
 
 <body>
   <!-- title bar -->
   <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-    <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+    <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
   </div>
   <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../images/adarshaLogo.png" alt="Logo" width="auto" height="70px"
+        <img src="../images/adarshaLogo.png" alt="Logo" width="auto" height="40px"
           class="d-inline-block align-text-top"></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link fs-4" aria-current="page" href="teach_home.php">Home</a>
+            <a class="nav-link fs-6" aria-current="page" href="teach_home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active fs-4" href="add_questions.php">Add Questions</a>
+            <a class="nav-link fs-6" href="add_students.php">Add Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" href="add_students.php">Add Students</a>
+            <a class="nav-link active fs-6" href="add_questions.php">Add Questions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
+            <a class="nav-link fs-6" href="QnView.php">View Questions</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success fs-4" type="submit">Search</button>
-        </form>
+
+        <!-- Right-aligned Login Button -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="teach_login.php" type="button" class="btn btn-light">
+              <img src="../images/profpic.png" alt="" width="20"> Log Out
+            </a>
+          </li>
+        </ul>
       </div>
+
     </div>
   </nav>
 
   <main class="m-4">
-    <div class="mb-4">
-      <!-- Back to Teacher Homepage -->
-      <a href="teach_home.php" class="btn btn-success">Back to Home</a>
-
-      <!-- Teacher logout -> (Homepage/index) |Login Page for now*| -->
-      <div class="d-flex float-end"> <a href="teach_login.php" type="button" class="btn btn-secondary">
-          <img src="../images/profpic.png" alt="" width="20" height="auto"> Log out</a>
-      </div>
-    </div>
 
     <?php
     // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //   // Get the selected grade
     //   $grade = $_POST['grade'];
-    
+
     //   // Validate if a grade is selected
     //   if (!in_array($grade, ['6', '7', '8', '9'])) {
     //     echo '<div class="alert alert-danger" role="alert">Invalid grade selected.</div>';
     //     exit;
     //   }
-    
+
     //   $subject = ucfirst($_POST['subject']);
     //   $que = ucfirst($_POST['que']);
     //   $option1 = $_POST['option1'];
@@ -112,15 +103,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     //   $option3 = $_POST['option3'];
     //   $option4 = $_POST['option4'];
     //   $correctOption = $_POST['correctOption'];
-    
+
     //   // Define table name dynamically
     //   $table = "grade" . $grade;
-    
+
     //   // Prepare and execute SQL query for the dynamic table
     //   $sql = "INSERT INTO `$table`( `subject`, `queTitle`, `option1`, `option2`, `option3`, `option4`, `correctOption`) VALUES (?,?,?,?,?,?,?)";
     //   $stmt = $con->prepare($sql);
     //   $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
-    
+
 
     ?>
 
