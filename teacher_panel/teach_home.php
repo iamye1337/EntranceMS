@@ -46,6 +46,9 @@ $queryResult = $mysqlConnection->query($sqlQuery);
                         <a class="nav-link fs-4" href="add_questions.php">Add Questions</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link fs-4" href="add_students.php">Add Students</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
                     </li>
                 </ul>
