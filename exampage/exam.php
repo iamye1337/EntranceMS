@@ -57,13 +57,12 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
 </head>
 
 <body>
-
     <!-- Modal -->
     <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="submissionModalLabel">Confirm Submission</h1>
+                    <h1 class="modal-title fs-5" id="submissionModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -74,53 +73,32 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
                     <button type="button" class="btn btn-primary" id="modal-submit-btn">Submit</button>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
-
-    <!-- title bar -->
-    <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-        <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
-    </div>
-
-    <!-- action bar -->
-    <div class="row text-center d-flex justify-content-between align-items-center w-100" style="background-color: white; margin-bottom: calc(10vh);">
-        <!-- logo -->
-        <div class="col-auto">
-            <img class="pt-2 ps-4 pb-2" src="../images/adarshaLogo.png" style="height: 60px;" alt="Logo">
-        </div>
-
-        <!-- question number -->
-        <div class="col">
-            <p class="fs-5 mb-0" id="qnIndicator"></p>
-        </div>
-
-        <!-- timer -->
-        <div class="col">
-            <p class="fs-5 mb-0" id="timer">
-                Timer: <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>
+                <img src="../images/adarshaLogo.png" height="70" alt="">
+            </div>
+            <!-- question number -->
+            <p class="nav-item" id="qnIndicator"></p>
+            <!-- timer -->
+            <p class="nav-item" id="timer">
+                Timer:
+                <small id="hours"></small>:
+                <small id="minutes"></small>:
+                <small id="seconds"></small>
             </p>
-        </div>
 
-        <!-- question status -->
-        <div class="col-auto">
-            <div class="row align-items-center justify-content-center pt-2">
-                <div class="col-auto fs-5">Attempted: <span id="attempted-qn">0/100</span></div>
-                <div class="col-auto fs-5">Unanswered: <span id="unattempted-qn">0</span></div>
+            <!-- this is new design -->
+            <div class="qst_status d-flex">
+                <div class="student-attempt">Attempted : <span id="attempted-qn">0/ 100</span></div>/
+                <div class="student-unattempt">Unanswered : <span id="unattempted-qn">0</span></div>
+
             </div>
-        </div>
-
-        <!-- navigation buttons -->
-        <div class="col-auto">
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-primary m-3 fs-6" id="prev" style="width: 200px;">Previous</button>
-                <button class="btn btn-primary m-3 fs-6" id="next" style="width: 200px;">Next</button>
+            <!-- buttons -->
+            <div class="d-flex">
+                <button class="btn btn-primary px-5 me-3" id="prev"
+                    >Previous</button>
+                <button class="btn btn-primary px-5" id="next">Next</button>
             </div>
         </div>
     </div>
-
 
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
@@ -214,8 +192,10 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
             </div>
         </div>
     </div>
+    </div>
+    </div>
     <script>
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             return "Data will be lost if you leave the page, are you sure?";
         };
     </script>
