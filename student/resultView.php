@@ -1,10 +1,31 @@
 <?php
 include "../session_handler.php";
+include "../database/connectdb.php";
 
 if (!isLoggedIn()) {
     header("Location:login.php");
 }
+//query that fetches datas from table
+$symbol = $_SESSION['symbolNo'];
+$sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
 
+//execute query
+$result = $conn->query(query: $sql);
+
+//fetch data
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+    // Store user data in variables
+    $name = $row["Name"];
+    $fName = $row["Fathers_Name"];
+    $contactNo = $row["Contact_No"];
+    $date = $row["examDate"];
+    $address = $row["Address"];
+    $obtMarks = $row["result"];
+} else {
+    echo "User not found.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +37,7 @@ if (!isLoggedIn()) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <title><?= $_SESSION["userName"] ?>'s Result </title>
+    <title><?php echo $name; ?>'s Result </title>
 </head>
 
 <body>
@@ -29,13 +50,10 @@ if (!isLoggedIn()) {
     <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
         <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
+        <form action="logout.php" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
 
-        <!-- action button -->
-        <div class="input-group justify-content-end d-flex">
-            <form action="logout.php" method="POST" class="pe-3 align-self-center">
-                <button type="submit" class="ps-5 pe-5 btn btn-lg btn-danger">Logout</button>
-            </form>
-        </div>
     </div>
 
 
@@ -54,13 +72,13 @@ if (!isLoggedIn()) {
                 </div>
                 <div class="col row">
                     <div class="col pt-3 ps-5 pe-5 big-text">
-                        <p><?= $_SESSION["userName"] ?></p>
+                        <p><?php echo $name; ?></p>
                     </div>
                     <div class="col ps-5">
                         <p>
-                            Father's Name: <?= $_SESSION["userFatherName"] ?> &emsp;
-                            Contact Number: <?= $_SESSION["userContactNumber"] ?> &emsp;
-                            Address: <?= $_SESSION["userAddress"] ?>
+                            Father's Name: <?php echo $fName; ?> &emsp;
+                            Contact Number: <?php echo $contactNo; ?> &emsp;
+                            Address: <?php echo $address; ?>
                         </p>
                     </div>
                 </div>
@@ -70,16 +88,16 @@ if (!isLoggedIn()) {
             <!-- Dynamic Progress Bar -->
             <div class="row-auto g-1 rounded-5 mt-5">
                 <div class="progress">
-                    <div class="progress-bar" id="dynaProgressBar" role="progressbar" aria-valuenow="<?= $_SESSION["marksObtained"] ?>"
-                        aria-valuemin="0" aria-valuemax="100" style="width: <?= $_SESSION["marksObtained"] ?>%;">
-                        <?= $_SESSION["marksObtained"] ?> marks
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="<?php echo $obtMarks; ?>"
+                        aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $obtMarks; ?>%;">
+                        <?php echo $obtMarks; ?> marks
                     </div>
                 </div>
             </div>
 
             <!-- test date bar -->
             <div class="row pt-5">
-                <p>Test Taken Date: <?= $_SESSION["testTakenDate"] ?></p>
+                <p>Test Date: <?php echo $date; ?></p>
             </div>
             <!-- test date bar end -->
 
@@ -88,36 +106,40 @@ if (!isLoggedIn()) {
                 <div class="row">
                     <div class="col">
                         <p>Total Score:</p>
-                        <p class="fs-2"><?= $_SESSION["marksObtained"] ?> out of 100</p>
+                        <p class="fs-2"><?php echo $obtMarks ?> out of 100</p>
                     </div>
                     <div class="col">
                         <p>Result:</p>
-                        <p id="resultPill" class="fs-2 w-30 d-inline-flex ps-3 pe-3 rounded-3 text-white">Passed</p>
+                        <p class="fs-2 w-30 d-inline-flex ps-3 pe-3 rounded-3"
+                            style="background-color: green; color: white;">Passed</p>
                     </div>
                 </div>
             </div>
+
+
+            <!--------------------------- Middle Boxes (Credentials) (*maybe make boxes around them)----------------------------->
+
+
+
         </div>
     </div>
-    <script>
-        let resultPill = document.getElementById('resultPill');
-        let dynaProgressBar = document.getElementById('dynaProgressBar');
-        let marks = Number(<?php echo $_SESSION["marksObtained"]; ?>);
-        if (marks <= 50 && marks >= 0){
-            resultPill.textContent = "Failed";
-            resultPill.classList.add("bg-danger");
-            dynaProgressBar.classList.add("bg-danger");
-        }
-        else if (marks >= 50 && marks <= 100){ 
-            resultPill.classList.add("bg-success")
-            dynaProgressBar.classList.add("bg-success");
+    <!-- <script>
+        function updateProgressBar(progress) {
+            const progressBar = document.querySelector('.progress-Bar');
+            progressBar.style.width = progress
+                + '%';
         }
 
-        // THIS ELSE FUNCTION IS NOT WORKING!!!
-        else 
-            window.onbeforeunload = function () {
-            return "Error! Please contact the administrator";
-    };
-    </script>
+        // Fetch the initial progress value
+        fetch('progressbar.php')
+            .then(response => response.json())
+            .then(data => {
+                updateProgressBar(data.progress);
+            })
+        // .catch(error => console.error('Error:', error));
+
+
+    </script> -->
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 

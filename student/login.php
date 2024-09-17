@@ -13,13 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
         //store user data into session
         $queryData = $queryResult->fetch_assoc();
         $_SESSION["userName"] = $queryData["Name"];
+        $_SESSION["symbolNumber"] = $queryData["Symbol_Number"];
+        $_SESSION["grade"] = $queryData["Grade"];
         $_SESSION["userFatherName"]   = $queryData["Fathers_Name"];
         $_SESSION["userMotherName"] = $queryData["Mothers_Name"];
         $_SESSION["userDateOfBirth"] = $queryData["Date_of_Birth"];
         $_SESSION["userAddress"] = $queryData["Address"];
         $_SESSION["userContactNumber"]= $queryData["Contact_Number"];
-        $_SESSION["symbolNumber"] = $queryData["Symbol_Number"];
-        $_SESSION["grade"] = $queryData["Grade"];
+        $_SESSION["userExamCompletionStatus"] = $queryData["Exam_Completion_Status"];
         $_SESSION["testTakenDate"] = $queryData["Examination_Date"];
         $_SESSION["marksObtained"] = $queryData["Result"];
         $_SESSION["isLoggedIn"] = true;

@@ -13,3 +13,6 @@ function hasFinishedExam () {
     }
     return false;
 }
+function isAdminLoggedIn () {
+    return true;
+}
