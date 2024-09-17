@@ -6,4 +6,5 @@ if (isLoggedIn()) {
 } else {
     header("Location:student/login.php");
 }
+//Samir
 ?>
