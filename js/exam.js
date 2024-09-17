@@ -1,6 +1,6 @@
 localStorage.clear();
 let questionCounter = 1;
-let totalQuestions = 10;
+let totalQuestions = 100;
 let attemptedQuestions = 0;
 
 // attempted and unanswered qns
@@ -208,7 +208,7 @@ function saveProgress(questionNum, selectedOption) {
 
     if (questionObj.options.correctOption == selectedOption) {
         correctedProgress.push('qid' + questionNum);
-        console.log("here")
+        // console.log("here")
         // no need to store in local storage acutally
         // localStorage.setItem('correctedProgress',JSON.stringify(correctedProgress));
     }
