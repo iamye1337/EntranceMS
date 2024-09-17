@@ -21,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
         $_SESSION["userContactNumber"]= $queryData["Contact_Number"];
         $_SESSION["userExamCompletionStatus"] = $queryData["Exam_Completion_Status"];
         $_SESSION["symbolNumber"] = $queryData["Symbol_Number"];
+        $_SESSION["grade"] = $queryData["Grade"];
+        $_SESSION["testTakenDate"] = $queryData["Examination_Date"];
+        $_SESSION["marksObtained"] = $queryData["Result"];
         $_SESSION["isLoggedIn"] = true;
 
         //close database session
@@ -50,9 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["symbolNumber"])) {
 </head>
 
 <body>
+<!-- title bar -->
+<div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
+        <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+    </div>
+ <!-- action bar -->
+ <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
+        <!-- logo -->
+        <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
+</div>
 
     <!----------------------- Main Container -------------------------->
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container d-flex justify-content-center align-items-center pt-5">
 
         <!----------------------- Login Container -------------------------->
         <div class="row border rounded-5 p-3 bg-white shadow box-area">

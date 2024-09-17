@@ -228,21 +228,6 @@ $queryData = $queryResult->fetch_all();
 
 <script>
     function editHandler(questionID) {
-        // axios({
-        //         method: 'POST',
-        //         url: '/EntranceMS/teacher_panel/handlers/_editHandler.php',
-        //         data: {
-        //             id: 1
-        //         },
-        //     })
-        //     .then(function(response) {
-        //         // Server side response
-        //         var result = JSON.parse(response.data);
-        //         console.log(result);
-        //     })
-        //     .catch(function(error) {
-        //         console.log(error);
-        //     });
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
