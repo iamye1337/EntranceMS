@@ -1,32 +1,6 @@
 <?php
 include("../database/connectdb.php");
 
-//SQL for creating table in database (same table properties for grade 6,7,8,9)
-
-//for creating grade-6 table, change below SQL grade$ -> grade6 and similar for 7,8,9
-//                                                |
-//                                                |
-// CREATE TABLE grade$ (           <-------------
-// 	   qid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//     subject VARCHAR(255),
-//     queTitle VARCHAR(400),
-//     option1 VARCHAR(255),
-//     option2 VARCHAR(255),
-//     option3 VARCHAR(255),
-//     option4 VARCHAR(255),
-//     correctOption VARCHAR(255)
-// )
-/*
-[grade] => 7
-[subject] => Science
-[question] => asd
-[option1] => asdf
-[option2] => asdfas
-[option3] => asdf
-[option4] => asdf
-[correctOption] => 1
-*/
-
 if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   $grade = $_POST["grade"];
   $subject = $_POST["subject"];
@@ -40,7 +14,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   INSERT INTO `grade_$grade`.`$subject`(`Question_ID`, `Question_Title`, `Option_1`, `Option_2`, `Option_3`, `Option_4`, `Correct_Option`) VALUES (NULL,'$question','$option1','$option2','$option3','$option4', $correctOption);
   Query;
 
+
   $queryResult = $mysqlConnection->query($sqlQuery);
+   // Success alert
+  if ($queryResult) { 
+
+    echo <<<Alert
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Success!</strong> Question has been added to $subject grade $grade
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    Alert;
+  }
+  
 }
 ?>
 
@@ -131,11 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     //   $stmt = $con->prepare($sql);
     //   $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
 
-    //   // Success alert
-    //   echo '<div class="alert alert-success" role="alert">
-    //       Question added successfully to Grade ' . $grade . '.
-    //   </div>';
-    // }
+     
     ?>
 
     <div>
