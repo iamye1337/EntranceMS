@@ -2,6 +2,9 @@
 include "../session_handler.php";
 include "../database/connectdb.php";
 
+if (!isLoggedIn()) {
+    header("Location:login.php");
+}
 //query that fetches datas from table
 $symbol = $_SESSION['symbolNo'];
 $sql = "SELECT * FROM stuInfo WHERE Symbol_No = '$symbol'";
