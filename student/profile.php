@@ -33,7 +33,7 @@ if (!isLoggedIn()) {
 
         <!-- action button -->
         <div class="input-group justify-content-end d-flex">
-            <a href="completionStatus.php" class="pe-3 align-self-center" type="submit"><button
+            <a href="../exampage/exam.php" class="pe-3 align-self-center" type="submit"><button
                     class="ps-5 pe-5 btn btn-lg btn-primary">Take the Test</button></a>
 
             <a class="pe-3 align-self-center" href="resultView.php"><button class="ps-5 pe-5 btn btn-lg btn-primary"

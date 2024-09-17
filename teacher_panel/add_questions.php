@@ -1,7 +1,7 @@
 <?php
 include("../database/connectdb.php");
 
-if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   $grade = $_POST["grade"];
   $subject = $_POST["subject"];
   $question = $_POST["question"];
@@ -16,8 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
 
 
   $queryResult = $mysqlConnection->query($sqlQuery);
-   // Success alert
-  if ($queryResult) { 
+  // Success alert
+  if ($queryResult) {
 
     echo <<<Alert
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     </div>
     Alert;
   }
-  
+
 }
 ?>
 
@@ -51,29 +51,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
 </style>
 
 <body>
-
-  <!-- navbar  -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <!-- title bar -->
+  <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
+    <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+  </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../images/adarshaLogo.png" alt="Logo" width="30" height="auto" class="d-inline-block align-text-top">
-        Adarsha Saula Yubak Secondary School
-      </a>
+        <img src="../images/adarshaLogo.png" alt="Logo" width="auto" height="70px"
+          class="d-inline-block align-text-top"></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link  " aria-current="page" href="teach_home.php">Home</a>
+            <a class="nav-link fs-4" aria-current="page" href="teach_home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="add_questions.php">Add Questions</a>
+            <a class="nav-link active fs-4" href="add_questions.php">Add Questions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-disabled="true" href="QnView.php">View Questions</a>
+            <a class="nav-link fs-4" href="add_students.php">Add Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success fs-4" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -94,13 +98,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //   // Get the selected grade
     //   $grade = $_POST['grade'];
-
+    
     //   // Validate if a grade is selected
     //   if (!in_array($grade, ['6', '7', '8', '9'])) {
     //     echo '<div class="alert alert-danger" role="alert">Invalid grade selected.</div>';
     //     exit;
     //   }
-
+    
     //   $subject = ucfirst($_POST['subject']);
     //   $que = ucfirst($_POST['que']);
     //   $option1 = $_POST['option1'];
@@ -108,16 +112,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     //   $option3 = $_POST['option3'];
     //   $option4 = $_POST['option4'];
     //   $correctOption = $_POST['correctOption'];
-
+    
     //   // Define table name dynamically
     //   $table = "grade" . $grade;
-
+    
     //   // Prepare and execute SQL query for the dynamic table
     //   $sql = "INSERT INTO `$table`( `subject`, `queTitle`, `option1`, `option2`, `option3`, `option4`, `correctOption`) VALUES (?,?,?,?,?,?,?)";
     //   $stmt = $con->prepare($sql);
     //   $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
+    
 
-     
     ?>
 
     <div>
