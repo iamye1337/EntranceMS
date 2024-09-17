@@ -48,7 +48,7 @@ let qnIndicator = document.getElementById('qnIndicator');
 let options = document.querySelectorAll('.options');
 
 const radios = document.querySelectorAll('input[type="radio"]');
-const storedValue = '3';
+// const storedValue = '3';
 // const storedValue = localStorage.getItem(`qid${questionCounter}`);
 
 
@@ -105,7 +105,7 @@ function sendMarks(){
 
 
 
-    fetch('/entrancems/exampage/partials/_handle_submission.php', {
+    fetch('partials/_handle_submission.php', {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json; charset=utf-8"
@@ -254,11 +254,11 @@ document.querySelectorAll('input[name="option"]').forEach(function (radioButton)
 
 
 
-// Call loadProgress when the page loads
-window.onload = function () {
-    let questionNum = loadProgress();
-    // Load and display the question based on questionNum
-};
+// // Call loadProgress when the page loads
+// window.onload = function () {
+//     let questionNum = loadProgress();
+//     // Load and display the question based on questionNum
+// };
 
 
 //make submit button visible when user gets pass 80 questions
