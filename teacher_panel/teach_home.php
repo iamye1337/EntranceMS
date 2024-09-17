@@ -61,7 +61,7 @@ $queryResult = $mysqlConnection->query($sqlQuery);
     </nav>
 
     <!----------------------- Main Container -------------------------->
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container d-flex justify-content-center align-items-center">
 
         <!----------------------- Container -------------------------->
 
