@@ -83,10 +83,11 @@ if (!isLoggedIn()) {
     </div>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </html>
 
-<html lang="en">
+<!-- <html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -156,4 +157,4 @@ if (!isLoggedIn()) {
 
 </body>
 
-</html>
+</html> -->

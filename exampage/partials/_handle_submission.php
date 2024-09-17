@@ -1,5 +1,5 @@
 <?php
-include '/xampp/htdocs/EntranceMS/database/connectdb.php';
+include '..\database\connectdb.php';
 session_start();
 if(isset($_POST)){
     $data=file_get_contents("php://input"); // json string
@@ -9,7 +9,7 @@ if(isset($_POST)){
 
     $sql = "UPDATE `stuinfo` SET `result` = '$marks' WHERE `Symbol_No` = '$symbol' ";
 
-    //execute query
+    // //execute query
     $result = $conn->query(query: $sql);  
     echo $marks; 
 

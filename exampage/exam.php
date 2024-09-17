@@ -119,40 +119,45 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
 
     <!-- action bar -->
-    <div class="d-flex justify-content-between p-2" style="background-color: white; margin-bottom: calc(10vh);">
+    <div class="row text-center d-flex justify-content-between w-100" style="background-color: white; margin-bottom: calc(10vh);">
         <!-- logo -->
-        <img src="images/adarshaLogo.png" style="height: 70px;" alt="">
+        <img class="col pt-2 ps-4 pb-2" src="../images/adarshaLogo.png" style="max-width: 6%;" alt="">
         <!-- question number -->
-        <p class="align-self-center fs-5" id="qnIndicator"></p>
+        <p class="align-self-center fs-5 col" id="qnIndicator"></p>
         <!-- timer -->
-        <p class="align-self-center fs-5" id="timer">Timer:
-            <small id="hours">
-
-            </small>:
-            <small id="minutes">
-
-            </small>:
-            <small id="seconds">
-
-            </small>
+        <p class="align-self-center fs-5 col" id="timer">
+            Timer:
+            <small id="hours"></small>:
+            <small id="minutes"></small>:
+            <small id="seconds"></small>
         </p>
-        <div class="qst_status">
-            <ul class="student-progress">
-                <li class="student-attempt">Attempted :<span id="attempted-qn">0
-                        / 100</span></li>
-                <li class="student-unattempt">Unanswered :<span id="unattempted-qn">0</span></li>
-            </ul>
+<!-- this is previous design -->
+        <!-- <div class="qst_status col" style="background-color: green;">
+            <div class="student-progress col">
+                <div class="student-attempt col">Attempted :<span id="attempted-qn">0/ 100</span></div>
+                <div class="student-unattempt col">Unanswered :<span id="unattempted-qn">0</span></div>
+            </div>
+        </div> -->
+      
+<!-- this is new design -->
+        <div class="qst_status text-center col fs-5">
+            <div class="row  align-items-center justify-content-center pt-4">
+                <div class="student-attempt col col">Attempted : <span id="attempted-qn">0/ 100</span></div>/
+                <div class="student-unattempt col col">Unanswered : <span id="unattempted-qn">0</span></div>
+            </div>
+
         </div>
         <!-- buttons -->
-        <div class="align-self-center">
-            <button class="btn btn-primary m-3 fs-6" id="prev" style="width: 200px;">Previous</button>
-            <button class="btn btn-primary m-3 fs-6" id="next" style="width: 200px;">Next</button>
+        <div class="align-self-center col">
+            <div class="row fs-4">
+                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="prev" style="width: 200px;">Previous</button>
+                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="next" style="width: 200px;">Next</button>
+            </div>
         </div>
     </div>
 
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
-
         <?php
         echo "{".PHP_EOL;
 
@@ -177,7 +182,6 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
                     }
                 },
             Question;
-
         }
         $lastQuestionIndex = count($questionBank) - 1;
         $questionNumber = $lastQuestionIndex + 1;
@@ -204,15 +208,15 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
 
     <!----------------------- Main Container -------------------------->
-    <div class="container d-flex justify-content-center align-items-center h-50">
+    <div class="container d-flex justify-content-center align-items-center">
         <!----------------------- Question Container -------------------------->
-        <div class="row border rounded-5 p-2 bg-white shadow box-area" id="question-form">
+        <div class="row border rounded-5 p-5 bg-white shadow box-area w-100" id="question-form">
             <!--------------------------- Left Box (question) ----------------------------->
             <div class="col right-box">
                 <div class="row align-items-center">
                     <div class="header-text" id="questionBox">
                         <h2 id="qn number" value="5">Question (number)</h2>
-                        <p id="question">sdfsdfsdfsd</p>
+                        <p class="fs-4" id="question">sdfsdfsdfsd</p>
                     </div>
                 </div>
             </div>
@@ -227,21 +231,21 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
                 </div>
                 <!-- options -->
                 <!-- <form action="processRadio.php" method="POST"> -->
-                <div class="ps-3 pb-5">
+                <div class="ps-3 pb-5 fs-4" id="examForm">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="option" id="Option1" value="1">
+                        <input class="form-check-input shadow" type="radio" name="option" id="Option1" value="1">
                         <label class="form-check-label options" for="Option1"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="option" id="Option2" value="2">
+                        <input class="form-check-input shadow" type="radio" name="option" id="Option2" value="2">
                         <label class="form-check-label options" for="Option2"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="option" id="Option3" value="3">
+                        <input class="form-check-input shadow" type="radio" name="option" id="Option3" value="3">
                         <label class="form-check-label options" for="Option3"></label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="option" id="Option4" value="4">
+                        <input class="form-check-input shadow" type="radio" name="option" id="Option4" value="4">
                         <label class="form-check-label options" for="Option4"></label>
                     </div>
 
@@ -390,6 +394,7 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
         window.onbeforeunload = function() {
             return "Data will be lost if you leave the page, are you sure?";
         };
+
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
