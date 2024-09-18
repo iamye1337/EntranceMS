@@ -66,59 +66,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
 </head>
 
 <body>
-    <!-- title bar -->
+    <!-- Title Bar -->
     <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-        <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
+        <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="../images/adarshaLogo.png" alt="Logo" height="40px" class="d-inline-block align-text-top">
+                <img src="../images/adarshaLogo.png" alt="Logo" height="70px" class="d-inline-block align-text-top">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fs-6" aria-current="page" href="teach_home.php">Home</a>
+                        <a class="nav-link fs-4" aria-current="page" href="teach_home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fs-6" href="add_students.php">Add Students</a>
+                        <a class="nav-link fs-4" href="add_questions.php">Add Questions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-6" href="add_questions.php">Add Questions</a>
+                        <a class="nav-link active fs-4" href="add_students.php">Add Students</a>
                     </li>
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <a class="nav-link fs-6" href="QnView.php">View Questions</a>
-                    </li>
-                </ul>
-
-                <!-- Right-aligned Login Button -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="teach_login.php" type="button" class="btn btn-light">
-                            <img src="../images/profpic.png" alt="" width="20"> Log Out
-                        </a>
-=======
                         <a class="nav-link fs-4" href="questionView.php">View Questions</a>
->>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
                     </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success fs-4" type="submit">Search</button>
+                </form>
             </div>
-
         </div>
     </nav>
 
     <main class="m-4">
-        <!-- <div class="mb-4">
+        <div class="mb-4">
             <a href="teach_home.php" class="btn btn-success">Back to Home</a>
             <div class="d-flex float-end">
                 <a href="teach_login.php" type="button" class="btn btn-secondary">
                     <img src="../images/profpic.png" alt="" width="20"> Log out
                 </a>
             </div>
-        </div> -->
+        </div>
 
         <div>
             <h1>Add Students Here</h1>
@@ -211,14 +201,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
                                 </div>
 
                                 <!-- Grade -->
-<<<<<<< HEAD
-                                <div class="mb-3 row>
-                                    <label for=" grade"
-                                    class="col-sm-2 col-form-label">Grade<sup><b>*</b></sup>:</label>
-=======
                                 <div class="mb-3 row">
                                     <label for="grade" class="col-sm-2 col-form-label">Grade<sup><b>*</b></sup>:</label>
->>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
                                     <div class="col-sm-10">
                                         <div class="col-md-3">
                                             <select class="form-select" name="grade" required>
