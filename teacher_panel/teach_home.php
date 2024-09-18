@@ -1,12 +1,14 @@
 <?php
 // Database connection
 include("../database/connectdb.php");
+include "../session_handler.php";
+
+if(!isAdminLoggedIn()) {
+    header("Location:teach_login.php");
+}
 
 
-// SQL query to fetch data from the users table
 $sqlQuery = "SELECT * FROM `examinee_info`";
-
-//Execute Query
 $queryResult = $mysqlConnection->query($sqlQuery);
 ?>
 
@@ -49,7 +51,7 @@ $queryResult = $mysqlConnection->query($sqlQuery);
                         <a class="nav-link fs-4" href="add_students.php">Add Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
+                        <a class="nav-link fs-4" aria-disabled="true" href="questionView.php">View Questions</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

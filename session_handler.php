@@ -14,5 +14,8 @@ function hasFinishedExam () {
     return false;
 }
 function isAdminLoggedIn () {
-    return true;
+    if(isset($_SESSION["isAdminLoggedIn"]) && $_SESSION["isAdminLoggedIn"] == true) {
+        return true;
+    }
+    return false;
 }

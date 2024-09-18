@@ -22,18 +22,18 @@ if (!isLoggedIn()) {
 <body>
     <!-- title bar -->
     <div class="d-flex p-2 justify-content-center align-items-center" style="background-color: #002561;">
-        <p class="fs-1 fw-medium text-light">Adarsha Saula Yubak Secondary School</p>
+        <h1 class="fs-3 fw-normal text-light">Adarsha Saula Yubak Secondary School</h1>
     </div>
 
     <!-- action bar -->
     <div class="d-flex justify-content-between p-2 mb-5" style="background-color: white;">
         <!-- logo -->
-        <img src="../images/adarshaLogo.png" style="height: 70px;" alt="">
+        <img src="../images/adarshaLogo.png" style="height: 40px;" alt="">
 
         <!-- action button -->
         <div class="input-group justify-content-end d-flex">
             <form action="logout.php" method="POST" class="pe-3 align-self-center">
-                <button type="submit" class="ps-5 pe-5 btn btn-lg btn-danger">Logout</button>
+                <button type="submit" class="ps-5 pe-5 btn btn-lg btn-danger fs-6">Logout</button>
             </form>
         </div>
     </div>
@@ -102,21 +102,18 @@ if (!isLoggedIn()) {
         let resultPill = document.getElementById('resultPill');
         let dynaProgressBar = document.getElementById('dynaProgressBar');
         let marks = Number(<?php echo $_SESSION["marksObtained"]; ?>);
-        if (marks <= 50 && marks >= 0){
+        if (marks <= 50 && marks >= 0) {
             resultPill.textContent = "Failed";
             resultPill.classList.add("bg-danger");
             dynaProgressBar.classList.add("bg-danger");
-        }
-        else if (marks >= 50 && marks <= 100){ 
+        } else if (marks >= 50 && marks <= 100) {
             resultPill.classList.add("bg-success")
             dynaProgressBar.classList.add("bg-success");
-        }
-
-        // THIS ELSE FUNCTION IS NOT WORKING!!!
-        else 
-            window.onbeforeunload = function () {
-            return "Error! Please contact the administrator";
-    };
+        } else {// THIS ELSE FUNCTION IS NOT WORKING!!!
+            window.onbeforeunload = function() {
+                return "Error! Please contact the administrator";
+            }
+        };
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

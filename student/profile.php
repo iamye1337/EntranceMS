@@ -1,6 +1,5 @@
 <?php
 include "../session_handler.php";
-
 if (!isLoggedIn()) {
     header("Location:login.php");
 }
@@ -33,8 +32,14 @@ if (!isLoggedIn()) {
 
         <!-- action button -->
         <div class="input-group justify-content-end d-flex">
-            <a href="../exampage/exam.php" class="pe-3 align-self-center" type="submit"><button
-                    class="ps-5 pe-5 btn btn-lg btn-primary">Take the Test</button></a>
+            <?php
+            if (!(isset($_SESSION["userExamCompletionStatus"]) && $_SESSION["userExamCompletionStatus"] == true)) {
+                echo <<<TakeTheTest
+                <a href="../exampage/exam.php" class="pe-3 align-self-center" type="submit"><button
+                class="ps-5 pe-5 btn btn-lg btn-primary">Take the Test</button></a>
+                TakeTheTest;
+            }
+            ?>
 
             <a class="pe-3 align-self-center" href="resultView.php"><button class="ps-5 pe-5 btn btn-lg btn-primary"
                     id="viewResult">View Result</button></a>
@@ -96,31 +101,31 @@ if (!isLoggedIn()) {
                     </div>
                 </div>
             </div>
-            </div>
-            <!----------------------- Rules Container -------------------------->
-
-            <div class="p-5 ps-3 pt-1  col-md-4 rounded d-flex flex-column justify-content-between">
-                <div class="border rounded-5 p-4 bg-white shadow box-area">
-                    <p class="fs-2">Rules for Online Examination</p>
-                    <ul class="fs-5">
-                        <li><strong>Time Limit:</strong> 2 hours</li>
-                        <li><strong>Total Number of Questions:</strong> 100</li>
-                        <li><strong>Exam Rules:</strong></li>
-                        <ol type="1">
-                            <li>Ensure you have a stable internet connection.</li>
-                            <li>Do not navigate away from the exam page.</li>
-                            <li>Read each question carefully before answering.</li>
-                            <li>Manage your time effectively to complete all questions.</li>
-                            <li>Do not refresh or Close the exam window.</li>
-                            <li>Use of unauthorized materials is prohibited.</li>
-                            <li>Contact support if you encounter any issues during the exam.</li>
-
-                    </ul>
-                    </ul>
-                </div>
-            </div>
-
         </div>
+        <!----------------------- Rules Container -------------------------->
+
+        <div class="p-5 ps-3 pt-1  col-md-4 rounded d-flex flex-column justify-content-between">
+            <div class="border rounded-5 p-4 bg-white shadow box-area">
+                <p class="fs-2">Rules for Online Examination</p>
+                <ul class="fs-5">
+                    <li><strong>Time Limit:</strong> 2 hours</li>
+                    <li><strong>Total Number of Questions:</strong> 100</li>
+                    <li><strong>Exam Rules:</strong></li>
+                    <ol type="1">
+                        <li>Ensure you have a stable internet connection.</li>
+                        <li>Do not navigate away from the exam page.</li>
+                        <li>Read each question carefully before answering.</li>
+                        <li>Manage your time effectively to complete all questions.</li>
+                        <li>Do not refresh or Close the exam window.</li>
+                        <li>Use of unauthorized materials is prohibited.</li>
+                        <li>Contact support if you encounter any issues during the exam.</li>
+
+                </ul>
+                </ul>
+            </div>
+        </div>
+
+    </div>
     </div>
 </body>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
