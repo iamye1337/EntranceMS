@@ -1,32 +1,50 @@
 <?php
 include("../database/connectdb.php");
+include "../session_handler.php";
+
+if(!isAdminLoggedIn()) {
+    header("Location:teach_login.php");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   $grade = $_POST["grade"];
-  $subject = $_POST["subject"];
-  $question = $_POST["question"];
+  $subjectName = $_POST["subject"];
+  $questionTitle = $_POST["question"];
   $option1 = $_POST["option1"];
   $option2 = $_POST["option2"];
   $option3 = $_POST["option3"];
   $option4 = $_POST["option4"];
   $correctOption = $_POST["correctOption"];
   $sqlQuery = <<<Query
-  INSERT INTO `grade_$grade`.`$subject`(`Question_ID`, `Question_Title`, `Option_1`, `Option_2`, `Option_3`, `Option_4`, `Correct_Option`) VALUES (NULL,'$question','$option1','$option2','$option3','$option4', $correctOption);
+  INSERT INTO `entrance_ms`.`question_bank`(
+  `Question_ID`, 
+  `Subject_Name`, 
+  `Grade`, 
+  `Question_Title`, 
+  `Option_1`, 
+  `Option_2`, 
+  `Option_3`, 
+  `Option_4`, 
+  `Correct_Option`) 
+  VALUES (NULL,'$subjectName', '$grade', '$questionTitle','$option1','$option2','$option3','$option4','$correctOption');
   Query;
-
-
   $queryResult = $mysqlConnection->query($sqlQuery);
-  // Success alert
-  if ($queryResult) {
 
+  if ($queryResult) {
     echo <<<Alert
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Success!</strong> Question has been added to $subject grade $grade
+      <strong>Success!</strong> Question has been added to $subjectName grade $grade
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    Alert;
+  } else {
+    echo <<<Alert
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Failure!</strong> Question was not added to $subjectName grade $grade
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     Alert;
   }
-
 }
 ?>
 
@@ -72,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
             <a class="nav-link fs-4" href="add_students.php">Add Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-4" aria-disabled="true" href="QnView.php">View Questions</a>
+            <a class="nav-link fs-4" aria-disabled="true" href="questionView.php">View Questions</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -98,13 +116,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //   // Get the selected grade
     //   $grade = $_POST['grade'];
-    
+
     //   // Validate if a grade is selected
     //   if (!in_array($grade, ['6', '7', '8', '9'])) {
     //     echo '<div class="alert alert-danger" role="alert">Invalid grade selected.</div>';
     //     exit;
     //   }
-    
+
     //   $subject = ucfirst($_POST['subject']);
     //   $que = ucfirst($_POST['que']);
     //   $option1 = $_POST['option1'];
@@ -112,15 +130,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
     //   $option3 = $_POST['option3'];
     //   $option4 = $_POST['option4'];
     //   $correctOption = $_POST['correctOption'];
-    
+
     //   // Define table name dynamically
     //   $table = "grade" . $grade;
-    
+
     //   // Prepare and execute SQL query for the dynamic table
     //   $sql = "INSERT INTO `$table`( `subject`, `queTitle`, `option1`, `option2`, `option3`, `option4`, `correctOption`) VALUES (?,?,?,?,?,?,?)";
     //   $stmt = $con->prepare($sql);
     //   $stmt->execute([$subject, $que, $option1, $option2, $option3, $option4, $correctOption]);
-    
+
 
     ?>
 

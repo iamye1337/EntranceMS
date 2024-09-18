@@ -1,6 +1,5 @@
 <?php
 include "../session_handler.php";
-
 if (!isLoggedIn()) {
     header("Location:login.php");
 }
@@ -33,8 +32,14 @@ if (!isLoggedIn()) {
 
         <!-- action button -->
         <div class="input-group justify-content-end d-flex">
-            <a href="../exampage/exam.php" class="pe-3 align-self-center" type="submit"><button
-                    class="ps-5 pe-5 btn btn-lg btn-primary">Take the Test</button></a>
+            <?php
+            if (!(isset($_SESSION["userExamCompletionStatus"]) && $_SESSION["userExamCompletionStatus"] == true)) {
+                echo <<<TakeTheTest
+                <a href="../exampage/exam.php" class="pe-3 align-self-center" type="submit"><button
+                class="ps-5 pe-5 btn btn-lg btn-primary">Take the Test</button></a>
+                TakeTheTest;
+            }
+            ?>
 
             <a class="pe-3 align-self-center" href="resultView.php"><button class="ps-5 pe-5 btn btn-lg btn-primary"
                     id="viewResult">View Result</button></a>
@@ -96,7 +101,7 @@ if (!isLoggedIn()) {
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
             <!----------------------- Rules Container -------------------------->
 
             <div class="responsive p-1 ps-1 pt-1  col rounded d-flex flex-column justify-content-between">
@@ -121,6 +126,8 @@ if (!isLoggedIn()) {
             </div>
 
         </div>
+
+    </div>
     </div>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

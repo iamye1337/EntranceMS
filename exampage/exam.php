@@ -5,6 +5,9 @@ include "../database/connectdb.php";
 if (!isLoggedIn()) {
     header("Location:../student/login.php");
 }
+if(isset($_SESSION["userExamCompletionStatus"]) && $_SESSION["userExamCompletionStatus"] == true) {
+    header("Location:../student/resultView.php");
+}
 
 $questionAmount = [
     "6" => [
@@ -35,8 +38,12 @@ $questionAmount = [
 $examineeGrade = $_SESSION["grade"];
 $questionBank = [];
 for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
+    $subjectName = $questionAmount[$examineeGrade][$i][0];
+    $questionSize = $questionAmount[$examineeGrade][$i][1];
     $sqlQuery = <<<Query
-    SELECT * FROM `grade_$examineeGrade`.`{$questionAmount[$examineeGrade][$i][0]}` ORDER BY RAND() LIMIT {$questionAmount[$examineeGrade][$i][1]};
+    SELECT * FROM `entrance_ms`.`question_bank`
+    WHERE `Grade` = $examineeGrade AND `Subject_Name` = "$subjectName"
+    ORDER BY RAND() LIMIT $questionSize;
     Query;
     $queryResult = $mysqlConnection->query($sqlQuery);
     $queryData = $queryResult->fetch_all();
@@ -57,12 +64,13 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
 </head>
 
 <body>
+
     <!-- Modal -->
     <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="submissionModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="submissionModalLabel">Confirm Submission</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -85,33 +93,32 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
 
     <!-- action bar -->
-    <div class="navbar navbar-expand-lg mb-5 fs-5">
-        <div class="container-fluid">
-            <!-- logo -->
-            <div class="navbar-brand" href="#">
-                <img src="../images/adarshaLogo.png" height="70" alt="">
+    <div class="row text-center d-flex justify-content-between w-100" style="background-color: white; margin-bottom: calc(10vh);">
+        <!-- logo -->
+        <img class="col pt-2 ps-4 pb-2" src="../images/adarshaLogo.png" style="max-width: 6%;" alt="">
+        <!-- question number -->
+        <p class="align-self-center fs-5 col" id="qnIndicator"></p>
+        <!-- timer -->
+        <p class="align-self-center fs-5 col" id="timer">
+            Timer:
+            <small id="hours"></small>:
+            <small id="minutes"></small>:
+            <small id="seconds"></small>
+        </p>
+      
+<!-- this is new design -->
+        <div class="qst_status text-center col fs-5">
+            <div class="row  align-items-center justify-content-center pt-4">
+                <div class="student-attempt col col">Attempted : <span id="attempted-qn">0/ 100</span></div>/
+                <div class="student-unattempt col col">Unanswered : <span id="unattempted-qn">0</span></div>
             </div>
-            <!-- question number -->
-            <p class="nav-item" id="qnIndicator"></p>
-            <!-- timer -->
-            <p class="nav-item" id="timer">
-                Timer:
-                <small id="hours"></small>:
-                <small id="minutes"></small>:
-                <small id="seconds"></small>
-            </p>
 
-            <!-- this is new design -->
-            <div class="qst_status d-flex">
-                <div class="student-attempt">Attempted : <span id="attempted-qn">0/ 100</span></div>/
-                <div class="student-unattempt">Unanswered : <span id="unattempted-qn">0</span></div>
-
-            </div>
-            <!-- buttons -->
-            <div class="d-flex">
-                <button class="btn btn-primary px-5 me-3" id="prev"
-                    >Previous</button>
-                <button class="btn btn-primary px-5" id="next">Next</button>
+        </div>
+        <!-- buttons -->
+        <div class="align-self-center col">
+            <div class="row fs-4">
+                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="prev" style="width: 200px;">Previous</button>
+                <button class="btn btn-primary m-3 fs-6 col col pt-2 pb-2" id="next" style="width: 200px;">Next</button>
             </div>
         </div>
     </div>
@@ -119,16 +126,16 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
         <?php
-        echo "{" . PHP_EOL;
+        echo "{";
 
         for ($i = 0; $i < (count($questionBank) - 1); $i++) {
             $questionNumber = $i + 1;
-            $questionTitle = $questionBank[$i][1];
-            $option1 = $questionBank[$i][2];
-            $option2 = $questionBank[$i][3];
-            $option3 = $questionBank[$i][4];
-            $option4 = $questionBank[$i][5];
-            $correctAnswer = $questionBank[$i][6];
+            $questionTitle = $questionBank[$i][3];
+            $option1 = $questionBank[$i][4];
+            $option2 = $questionBank[$i][5];
+            $option3 = $questionBank[$i][6];
+            $option4 = $questionBank[$i][7];
+            $correctAnswer = $questionBank[$i][8];
 
             echo <<<Question
                 "Question $questionNumber": {
@@ -145,12 +152,12 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
         }
         $lastQuestionIndex = count($questionBank) - 1;
         $questionNumber = $lastQuestionIndex + 1;
-        $questionTitle = $questionBank[$lastQuestionIndex][1];
-        $option1 = $questionBank[$lastQuestionIndex][2];
-        $option2 = $questionBank[$lastQuestionIndex][3];
-        $option3 = $questionBank[$lastQuestionIndex][4];
-        $option4 = $questionBank[$lastQuestionIndex][5];
-        $correctAnswer = $questionBank[$i][6];
+        $questionTitle = $questionBank[$lastQuestionIndex][3];
+        $option1 = $questionBank[$lastQuestionIndex][4];
+        $option2 = $questionBank[$lastQuestionIndex][5];
+        $option3 = $questionBank[$lastQuestionIndex][6];
+        $option4 = $questionBank[$lastQuestionIndex][7];
+        $correctAnswer = $questionBank[$i][8];
         echo <<<LastQuestion
            "Question $questionNumber": {
                     "Qn": "$questionTitle",
@@ -211,10 +218,10 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     </div>
     </div>
     <script>
-        window.onbeforeunload = function () {
+        window.onbeforeunload = function() {
             return "Data will be lost if you leave the page, are you sure?";
         };
-    </script>
+        </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/exam.js"></script>
 </body>
