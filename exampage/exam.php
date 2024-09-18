@@ -5,6 +5,9 @@ include "../database/connectdb.php";
 if (!isLoggedIn()) {
     header("Location:../student/login.php");
 }
+if(isset($_SESSION["userExamCompletionStatus"]) && $_SESSION["userExamCompletionStatus"] == true) {
+    header("Location:../student/resultView.php");
+}
 
 $questionAmount = [
     "6" => [
@@ -35,8 +38,12 @@ $questionAmount = [
 $examineeGrade = $_SESSION["grade"];
 $questionBank = [];
 for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
+    $subjectName = $questionAmount[$examineeGrade][$i][0];
+    $questionSize = $questionAmount[$examineeGrade][$i][1];
     $sqlQuery = <<<Query
-    SELECT * FROM `grade_$examineeGrade`.`{$questionAmount[$examineeGrade][$i][0]}` ORDER BY RAND() LIMIT {$questionAmount[$examineeGrade][$i][1]};
+    SELECT * FROM `entrance_ms`.`question_bank`
+    WHERE `Grade` = $examineeGrade AND `Subject_Name` = "$subjectName"
+    ORDER BY RAND() LIMIT $questionSize;
     Query;
     $queryResult = $mysqlConnection->query($sqlQuery);
     $queryData = $queryResult->fetch_all();
@@ -125,16 +132,20 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
         <?php
+<<<<<<< HEAD
         echo "{" . PHP_EOL;
+=======
+        echo "{";
+>>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
 
         for ($i = 0; $i < (count($questionBank) - 1); $i++) {
             $questionNumber = $i + 1;
-            $questionTitle = $questionBank[$i][1];
-            $option1 = $questionBank[$i][2];
-            $option2 = $questionBank[$i][3];
-            $option3 = $questionBank[$i][4];
-            $option4 = $questionBank[$i][5];
-            $correctAnswer = $questionBank[$i][6];
+            $questionTitle = $questionBank[$i][3];
+            $option1 = $questionBank[$i][4];
+            $option2 = $questionBank[$i][5];
+            $option3 = $questionBank[$i][6];
+            $option4 = $questionBank[$i][7];
+            $correctAnswer = $questionBank[$i][8];
 
             echo <<<Question
                 "Question $questionNumber": {
@@ -151,12 +162,12 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
         }
         $lastQuestionIndex = count($questionBank) - 1;
         $questionNumber = $lastQuestionIndex + 1;
-        $questionTitle = $questionBank[$lastQuestionIndex][1];
-        $option1 = $questionBank[$lastQuestionIndex][2];
-        $option2 = $questionBank[$lastQuestionIndex][3];
-        $option3 = $questionBank[$lastQuestionIndex][4];
-        $option4 = $questionBank[$lastQuestionIndex][5];
-        $correctAnswer = $questionBank[$i][6];
+        $questionTitle = $questionBank[$lastQuestionIndex][3];
+        $option1 = $questionBank[$lastQuestionIndex][4];
+        $option2 = $questionBank[$lastQuestionIndex][5];
+        $option3 = $questionBank[$lastQuestionIndex][6];
+        $option4 = $questionBank[$lastQuestionIndex][7];
+        $correctAnswer = $questionBank[$i][8];
         echo <<<LastQuestion
            "Question $questionNumber": {
                     "Qn": "$questionTitle",

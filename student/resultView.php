@@ -102,14 +102,14 @@ if (!isLoggedIn()) {
         let resultPill = document.getElementById('resultPill');
         let dynaProgressBar = document.getElementById('dynaProgressBar');
         let marks = Number(<?php echo $_SESSION["marksObtained"]; ?>);
-        if (marks <= 50 && marks >= 0){
+        if (marks <= 50 && marks >= 0) {
             resultPill.textContent = "Failed";
             resultPill.classList.add("bg-danger");
             dynaProgressBar.classList.add("bg-danger");
-        }
-        else if (marks >= 50 && marks <= 100){ 
+        } else if (marks >= 50 && marks <= 100) {
             resultPill.classList.add("bg-success")
             dynaProgressBar.classList.add("bg-success");
+<<<<<<< HEAD
         }
 
         // THIS ELSE FUNCTION IS NOT WORKING!!!
@@ -117,6 +117,13 @@ if (!isLoggedIn()) {
             window.onbeforeunload = function () {
             return "Error! Please contact the administrator";
     };
+=======
+        } else {// THIS ELSE FUNCTION IS NOT WORKING!!!
+            window.onbeforeunload = function() {
+                return "Error! Please contact the administrator";
+            }
+        };
+>>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

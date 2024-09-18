@@ -1,27 +1,46 @@
 <?php
 include("../database/connectdb.php");
+include "../session_handler.php";
+
+if(!isAdminLoggedIn()) {
+    header("Location:teach_login.php");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
   $grade = $_POST["grade"];
-  $subject = $_POST["subject"];
-  $question = $_POST["question"];
+  $subjectName = $_POST["subject"];
+  $questionTitle = $_POST["question"];
   $option1 = $_POST["option1"];
   $option2 = $_POST["option2"];
   $option3 = $_POST["option3"];
   $option4 = $_POST["option4"];
   $correctOption = $_POST["correctOption"];
   $sqlQuery = <<<Query
-  INSERT INTO `grade_$grade`.`$subject`(`Question_ID`, `Question_Title`, `Option_1`, `Option_2`, `Option_3`, `Option_4`, `Correct_Option`) VALUES (NULL,'$question','$option1','$option2','$option3','$option4', $correctOption);
+  INSERT INTO `entrance_ms`.`question_bank`(
+  `Question_ID`, 
+  `Subject_Name`, 
+  `Grade`, 
+  `Question_Title`, 
+  `Option_1`, 
+  `Option_2`, 
+  `Option_3`, 
+  `Option_4`, 
+  `Correct_Option`) 
+  VALUES (NULL,'$subjectName', '$grade', '$questionTitle','$option1','$option2','$option3','$option4','$correctOption');
   Query;
-
-
   $queryResult = $mysqlConnection->query($sqlQuery);
-  // Success alert
-  if ($queryResult) {
 
+  if ($queryResult) {
     echo <<<Alert
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Success!</strong> Question has been added to $subject grade $grade
+      <strong>Success!</strong> Question has been added to $subjectName grade $grade
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    Alert;
+  } else {
+    echo <<<Alert
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Failure!</strong> Question was not added to $subjectName grade $grade
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     Alert;
@@ -66,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
             <a class="nav-link active fs-6" href="add_questions.php">Add Questions</a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link fs-6" href="QnView.php">View Questions</a>
           </li>
         </ul>
@@ -76,6 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST)) {
             <a href="teach_login.php" type="button" class="btn btn-light">
               <img src="../images/profpic.png" alt="" width="20"> Log Out
             </a>
+=======
+            <a class="nav-link fs-4" aria-disabled="true" href="questionView.php">View Questions</a>
+>>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
           </li>
         </ul>
       </div>

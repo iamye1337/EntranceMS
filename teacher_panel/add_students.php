@@ -1,45 +1,54 @@
 <?php
-// Database connection
 include("../database/connectdb.php");
+include "../session_handler.php";
 
+if (!isAdminLoggedIn()) {
+    header("Location:teach_login.php");
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
-    // Sanitize form inputs
     $name = htmlspecialchars($_POST["name"]);
-    $symbol = htmlspecialchars($_POST["symbolNo"]);
-    $fName = htmlspecialchars($_POST["fname"]);
-    $mName = htmlspecialchars($_POST["mname"]);
-    $dob = htmlspecialchars($_POST["dob"]);
+    $symbolNumber = htmlspecialchars($_POST["symbolNo"]);
+    $fatherName = htmlspecialchars($_POST["fname"]);
+    $motherName = htmlspecialchars($_POST["mname"]);
+    $dateOfBirth = htmlspecialchars($_POST["dob"]);
     $address = htmlspecialchars($_POST["address"]);
-    $contactNo = htmlspecialchars($_POST["contactNo"]);
+    $contactNumber = htmlspecialchars($_POST["contactNo"]);
     $examDate = htmlspecialchars($_POST["examDate"]);
     $grade = htmlspecialchars($_POST["grade"]);
 
-    // Check if the connection to the database is valid
-    if ($mysqlConnection->connect_error) {
-        die("Connection failed: " . $mysqlConnection->connect_error);
-    }
+    $sqlQuery = <<<sqlQuery
+    INSERT INTO `examinee_info`(
+    `SN`,
+    `Name`,
+    `Symbol_Number`, 
+    `Grade`, 
+    `Fathers_Name`, 
+    `Mothers_Name`, 
+    `Date_of_Birth`, 
+    `Address`, 
+    `Contact_Number`, 
+    `Exam_Completion_Status`, 
+    `Examination_Date`, 
+    `Result`) 
+    VALUES (NULL,'$name','$symbolNumber','$grade','$fatherName','$motherName','$dateOfBirth','$address','$contactNumber',0,'$examDate',0);
+    sqlQuery;
+    $queryResult = $mysqlConnection->query($sqlQuery);
 
-    // Prepare and execute SQL statement using prepared statements
-    $stmt = $mysqlConnection->prepare("INSERT INTO examinee_info (Name, Symbol_Number, Fathers_Name, Grade, Mothers_Name, Date_of_Birth, Address, Contact_Number, Examination_Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    // Check if the prepare() was successful
-    if ($stmt === false) {
-        die("Error preparing statement: " . $mysqlConnection->error);
-    }
-
-    $stmt->bind_param("sssssssss", $name, $symbol, $fName, $grade, $mName, $dob, $address, $contactNo, $examDate);
-
-    if ($stmt->execute()) {
+    if ($queryResult) {
         echo <<<Alert
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> $name has been added
+          <strong>Success!</strong> $name has been added to the database.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         Alert;
     } else {
-        echo "Error: " . $stmt->error;
+        echo <<<Alert
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Failure!</strong> $name was not added to the database
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        Alert;
     }
-    $stmt->close();
 }
 ?>
 
@@ -80,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
                         <a class="nav-link fs-6" href="add_questions.php">Add Questions</a>
                     </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link fs-6" href="QnView.php">View Questions</a>
                     </li>
                 </ul>
@@ -90,6 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
                         <a href="teach_login.php" type="button" class="btn btn-light">
                             <img src="../images/profpic.png" alt="" width="20"> Log Out
                         </a>
+=======
+                        <a class="nav-link fs-4" href="questionView.php">View Questions</a>
+>>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
                     </li>
                 </ul>
             </div>
@@ -198,12 +211,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST)) {
                                 </div>
 
                                 <!-- Grade -->
+<<<<<<< HEAD
                                 <div class="mb-3 row>
                                     <label for=" grade"
                                     class="col-sm-2 col-form-label">Grade<sup><b>*</b></sup>:</label>
+=======
+                                <div class="mb-3 row">
+                                    <label for="grade" class="col-sm-2 col-form-label">Grade<sup><b>*</b></sup>:</label>
+>>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="grade" required>
+                                        <div class="col-md-3">
+                                            <select class="form-select" name="grade" required>
+                                                <option selected disabled value="">Choose grade...</option>
+                                                <option value="6">Grade 6</option>
+                                                <option value="7">Grade 7</option>
+                                                <option value="8">Grade 8</option>
+                                                <option value="9">Grade 9</option>
+                                            </select>
+                                        </div>
                                     </div>
+                                    <!-- <label for="grade" class="col-sm-2 col-form-label">Grade<sup>*</sup>:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="grade" id="grade" required>
+                                    </div> -->
                                 </div>
 
                                 <!-- Form submission -->
