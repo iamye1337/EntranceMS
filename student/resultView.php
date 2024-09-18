@@ -109,21 +109,11 @@ if (!isLoggedIn()) {
         } else if (marks >= 50 && marks <= 100) {
             resultPill.classList.add("bg-success")
             dynaProgressBar.classList.add("bg-success");
-<<<<<<< HEAD
-        }
-
-        // THIS ELSE FUNCTION IS NOT WORKING!!!
-        else
-            window.onbeforeunload = function () {
-            return "Error! Please contact the administrator";
-    };
-=======
         } else {// THIS ELSE FUNCTION IS NOT WORKING!!!
             window.onbeforeunload = function() {
                 return "Error! Please contact the administrator";
             }
         };
->>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
     </script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -132,11 +132,7 @@ for ($i = 0; $i < count($questionAmount[$examineeGrade]); $i++) {
     <!-- add correct option -->
     <div class="container d-none" id="question-container">
         <?php
-<<<<<<< HEAD
-        echo "{" . PHP_EOL;
-=======
         echo "{";
->>>>>>> 65462271d78763c7745bdfc86f89b46ed0ec86ff
 
         for ($i = 0; $i < (count($questionBank) - 1); $i++) {
             $questionNumber = $i + 1;
