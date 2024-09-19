@@ -1,6 +1,6 @@
 localStorage.clear();
 let questionCounter = 1;
-let totalQuestions = 100;
+let totalQuestions = 10;
 let attemptedQuestions = 0;
 
 // attempted and unanswered qns
