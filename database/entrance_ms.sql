@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2024 at 05:17 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Sep 19, 2024 at 05:03 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,9 +47,9 @@ CREATE TABLE `examinee_info` (
 --
 
 INSERT INTO `examinee_info` (`SN`, `Name`, `Symbol_Number`, `Grade`, `Fathers_Name`, `Mothers_Name`, `Date_of_Birth`, `Address`, `Contact_Number`, `Exam_Completion_Status`, `Examination_Date`, `Result`) VALUES
-(9, 'test', '12345', 6, 'test father', 'test mother', '2002-10-23', 'test address', '1234567890', 1, '2024-09-18', 1),
-(10, 'not exam', '123456', 7, 'aa', 'aa', '2024-09-19', 'aa', 'aa', 0, '2024-09-19', 0),
-(11, 'sasasa', '123456789', 8, 'sasasa', 'sasasa', '2024-09-17', 'sasasa', 'sasasa', 0, '2024-09-18', 0);
+(9, 'Aman Mali', '06-01', 6, 'daman mali', 'gita mali', '2002-10-23', 'Bungamati', '9800008981', 0, '2024-09-18', 0),
+(10, 'Laxman Dangol', '07-01', 7, 'Ram Dangol', 'Sita Dangol', '2024-09-19', 'Sunakothi', '9812354082', 0, '2024-09-19', 0),
+(11, 'Shuvam Neupane', '08-01', 8, 'Shuv Neupane', 'Shuha Neupane', '2024-09-17', 'Thimi', '9812364958', 0, '2024-09-18', 0);
 
 -- --------------------------------------------------------
 
