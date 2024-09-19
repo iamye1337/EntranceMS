@@ -11,28 +11,28 @@ if(isset($_SESSION["userExamCompletionStatus"]) && $_SESSION["userExamCompletion
 
 $questionAmount = [
     "6" => [
-        ["English", 40],
-        ["Math", 20],
-        ["Science", 20],
-        ["Health", 20]
+        ["English", 4],
+        ["Math", 2],
+        ["Science", 2],
+        ["Health", 2]
     ],
     "7" => [
-        ["English", 40],
-        ["Math", 20],
-        ["Science", 20],
-        ["Health", 20]
+        ["English", 4],
+        ["Math", 2],
+        ["Science", 2],
+        ["Health", 2]
     ],
     "8" => [
-        ["English", 40],
-        ["Math", 20],
-        ["Science", 20],
-        ["Health", 20]
+        ["English", 4],
+        ["Math", 2],
+        ["Science", 2],
+        ["Health", 2]
     ],
     "9" => [
-        ["English", 40],
-        ["Math", 20],
-        ["Science", 20],
-        ["Health", 20]
+        ["English", 4],
+        ["Math", 2],
+        ["Science", 2],
+        ["Health", 2]
     ]
 ];
 $examineeGrade = $_SESSION["grade"];

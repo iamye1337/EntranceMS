@@ -10,9 +10,8 @@ if(isset($_POST)){
     $resultData=json_decode($data,true); // return a php array
     $marks= $resultData['marks'];
     $symbolNumber = $_SESSION["symbolNumber"];
-    $sqlQuery = <<<sqlQuery
-    UPDATE `examinee_info` SET `Result` = '$marks', `Exam_Completion_Status` = 1 WHERE `Symbol_Number` = '$symbolNumber' ";
-    sqlQuery;
+    $sqlQuery ="UPDATE `examinee_info` SET `Result` = '$marks', `Exam_Completion_Status` = 1 WHERE `Symbol_Number` = '$symbolNumber' ";
+
     $queryResult = $mysqlConnection->query($sqlQuery);
 
     if ($queryResult) {
