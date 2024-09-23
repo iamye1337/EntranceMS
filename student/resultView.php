@@ -88,7 +88,7 @@ if (!isLoggedIn()) {
                 <div class="row">
                     <div class="col">
                         <p>Total Score:</p>
-                        <p class="fs-2"><?= $_SESSION["marksObtained"] ?> out of 100</p>
+                        <p class="fs-2"><?= $_SESSION["marksObtained"] ?> out of 10</p>
                     </div>
                     <div class="col">
                         <p>Result:</p>
@@ -102,11 +102,11 @@ if (!isLoggedIn()) {
         let resultPill = document.getElementById('resultPill');
         let dynaProgressBar = document.getElementById('dynaProgressBar');
         let marks = Number(<?php echo $_SESSION["marksObtained"]; ?>);
-        if (marks <= 50 && marks >= 0) {
+        if (marks <= 5 && marks >= 0) {
             resultPill.textContent = "Failed";
             resultPill.classList.add("bg-danger");
             dynaProgressBar.classList.add("bg-danger");
-        } else if (marks >= 50 && marks <= 100) {
+        } else if (marks >= 5 && marks <= 10) {
             resultPill.classList.add("bg-success")
             dynaProgressBar.classList.add("bg-success");
         } else {// THIS ELSE FUNCTION IS NOT WORKING!!!
