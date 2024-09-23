@@ -71,7 +71,7 @@ if (!isLoggedIn()) {
             <div class="row-auto g-1 rounded-5 mt-5">
                 <div class="progress">
                     <div class="progress-bar" id="dynaProgressBar" role="progressbar" aria-valuenow="<?= $_SESSION["marksObtained"] ?>"
-                        aria-valuemin="0" aria-valuemax="100" style="width: <?= $_SESSION["marksObtained"] ?>%;">
+                        aria-valuemin="0" aria-valuemax="10" style="width: <?= $_SESSION["marksObtained"] ?>%;">
                         <?= $_SESSION["marksObtained"] ?> marks
                     </div>
                 </div>

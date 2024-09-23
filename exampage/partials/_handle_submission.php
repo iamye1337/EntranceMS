@@ -16,6 +16,7 @@ if(isset($_POST)){
 
     if ($queryResult) {
         $_SESSION["userExamCompletionStatus"] = true;
+        $_SESSION["marksObtained"] =$marks;
     }
     echo $marks; 
 }
